@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-export default class Games extends Component {
+export default class GamesContainer extends Component {
   constructor(props: any) {
     super(props)
 

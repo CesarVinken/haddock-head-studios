@@ -1,9 +1,9 @@
 import React from "react"
 import { Route, Switch } from "react-router-dom"
 import Home from "./containers/Home"
-import Album from "./containers/Album"
-import Albums from "./containers/Albums"
-import Games from "./containers/Games"
+import Album from "./containers/AlbumContainer"
+import Albums from "./containers/AlbumsContainer"
+import Games from "./containers/GamesContainer"
 
 export default () => (
   <Switch>
