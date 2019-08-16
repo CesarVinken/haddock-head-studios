@@ -1,6 +1,5 @@
 node_modules/
 .cache/
 dist/
-src/server/config/dev.js
-src/server/seed/data/
 .env
+config/dev.js

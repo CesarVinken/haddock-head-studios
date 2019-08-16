@@ -12,5 +12,8 @@ export default {
     USER_POOL_ID: "YOUR_COGNITO_USER_POOL_ID",
     APP_CLIENT_ID: "YOUR_COGNITO_APP_CLIENT_ID",
     IDENTITY_POOL_ID: "YOUR_IDENTITY_POOL_ID"
+  },
+  proxy: {
+    PROXY_URL: "https://cors-anywhere.herokuapp.com/"
   }
 }
