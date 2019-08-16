@@ -21,7 +21,6 @@ export default class Albums extends Component<{}, MyState> {
   }
 
   componentDidMount() {
-    // get album info
     this._getAllAlbums()
   }
 
@@ -99,7 +98,14 @@ export default class Albums extends Component<{}, MyState> {
     const albumDisplay: JSX.Element[] = this.state.albums.map(album => {
       return (
         <li className="album" key={album.album_name}>
-          <Link to={album.album_name}>{album.album_name}</Link>
+          <Link
+            to={{
+              pathname: `albums/${album.album_name}`,
+              state: { albumName: album.album_name }
+            }}
+          >
+            {album.album_name}
+          </Link>
         </li>
       )
     })

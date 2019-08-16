@@ -2,6 +2,7 @@ import Axios from "axios"
 import uuid from "uuid"
 
 import config from "../../config"
+import DynamoDbAlbum from "../../models/DynamoDbAlbum"
 
 const addAlbum = async (albumData: any) => {
   console.log("Trying to post")
@@ -40,9 +41,12 @@ const getAlbum = async (albumName: string) => {
       }
     })
 
-    console.log(data)
+    const albumData: DynamoDbAlbum = data.data[0]
+    console.log("data", albumData)
+    return albumData
   } catch (error) {
     console.log(error)
+    return error
   }
 }
 
