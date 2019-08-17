@@ -1,8 +1,11 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 
-import DynamoDbGame from "../models/DynamoDbGame"
 import { getAllGames } from "../lib/api/gameApi"
+
+import DynamoDbGame from "../models/DynamoDbGame"
+
+import GameStore from "../store/GameStore"
 
 type MyState = { games: Array<DynamoDbGame> }
 
@@ -34,8 +37,15 @@ export default class GamesContainer extends Component<{}, MyState> {
   }
 
   async _getAllGames() {
-    const games: DynamoDbGame[] = await getAllGames()
-    this.setState({ games })
+    if (GameStore.games.length < 1) {
+      const games: DynamoDbGame[] = await getAllGames()
+
+      this.setState({ games })
+      GameStore.setGames(games)
+    } else {
+      console.log(typeof GameStore.games)
+      this.setState({ games: GameStore.games })
+    }
   }
 
   _getGameDisplay() {

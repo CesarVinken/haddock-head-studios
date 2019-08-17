@@ -55,32 +55,24 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   }
 
   async _getAlbumData(albumName: string) {
+    let albumData: DynamoDbAlbum | undefined
     if (AlbumStore.albums.length < 1) {
       const albums: DynamoDbAlbum[] = await getAllAlbums()
       AlbumStore.albums = albums
 
-      const albumData: DynamoDbAlbum | undefined = albums.find(
-        album => album.album_name === albumName
-      )
-
-      if (typeof albumData === "undefined") {
-        console.log("Could not find data for album")
-        return
-      }
-
-      this.setState({ album: albumData })
+      albumData = albums.find(album => album.album_name === albumName)
     } else {
-      const albumData: DynamoDbAlbum | undefined = AlbumStore.albums.find(
+      albumData = AlbumStore.albums.find(
         album => album.album_name === albumName
       )
-
-      if (typeof albumData === "undefined") {
-        console.log("Could not find data for album")
-        return
-      }
-
-      this.setState({ album: albumData })
     }
+
+    if (typeof albumData === "undefined") {
+      console.log("Could not find data for album")
+      return
+    }
+
+    this.setState({ album: albumData })
   }
 
   _getDescriptionDisplay(): JSX.Element {

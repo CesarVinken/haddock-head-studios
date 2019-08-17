@@ -9,7 +9,7 @@ const addAlbum = async (albumData: any) => {
   const albumId: string = uuid.v1()
 
   try {
-    const data = await Axios({
+    await Axios({
       method: "post",
       url: `${
         config.proxy.PROXY_URL

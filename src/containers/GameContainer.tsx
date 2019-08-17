@@ -2,9 +2,11 @@ import React, { Component } from "react"
 import { RouteComponentProps, Link } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
 
-import { getGame } from "../lib/api/gameApi"
+import { getAllGames } from "../lib/api/gameApi"
 
 import DynamoDbGame from "../models/DynamoDbGame"
+
+import GameStore from "../store/GameStore"
 
 type MyState = { game: DynamoDbGame }
 
@@ -47,7 +49,21 @@ export default class GameContainer extends Component<GameProps, MyState> {
   }
 
   async _getGameData(gameName: string) {
-    const gameData: DynamoDbGame = await getGame(gameName)
+    let gameData: DynamoDbGame | undefined
+    if (GameStore.games.length < 1) {
+      const games: DynamoDbGame[] = await getAllGames()
+      GameStore.games = games
+
+      gameData = games.find(game => game.game_name === gameName)
+    } else {
+      gameData = GameStore.games.find(game => game.game_name === gameName)
+    }
+
+    if (typeof gameData === "undefined") {
+      console.log("Could not find data for game")
+      return
+    }
+
     this.setState({ game: gameData })
   }
 
