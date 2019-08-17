@@ -5,6 +5,8 @@ import { getAllAlbums } from "../lib/api/albumApi"
 
 import DynamoDbAlbum from "../models/DynamoDbAlbum"
 
+import AlbumStore from "../store/AlbumStore"
+
 type MyState = { albums: Array<DynamoDbAlbum> }
 
 export default class AlbumsContainer extends Component<{}, MyState> {
@@ -37,8 +39,16 @@ export default class AlbumsContainer extends Component<{}, MyState> {
   }
 
   async _getAllAlbums() {
-    const albums: DynamoDbAlbum[] = await getAllAlbums()
-    this.setState({ albums })
+    // After the first time, albums are stored in the AlbumStore, and don't need to be retrieved from the database
+    if (AlbumStore.albums.length < 1) {
+      const albums: DynamoDbAlbum[] = await getAllAlbums()
+
+      this.setState({ albums })
+      AlbumStore.setAlbums(albums)
+    } else {
+      console.log(typeof AlbumStore.albums)
+      this.setState({ albums: AlbumStore.albums })
+    }
   }
 
   _getAlbumDisplay() {

@@ -2,11 +2,12 @@ import React, { Component } from "react"
 import { RouteComponentProps, Link } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
 
-import { getAlbum } from "../lib/api/albumApi"
+import { getAllAlbums } from "../lib/api/albumApi"
 import { secondsToStringTime } from "../lib/util/helpers"
 
 import DynamoDbAlbum from "../models/DynamoDbAlbum"
 import Track from "../models/Track"
+import AlbumStore from "../store/AlbumStore"
 
 type MyState = { album: DynamoDbAlbum }
 
@@ -54,8 +55,32 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   }
 
   async _getAlbumData(albumName: string) {
-    const albumData: DynamoDbAlbum = await getAlbum(albumName)
-    this.setState({ album: albumData })
+    if (AlbumStore.albums.length < 1) {
+      const albums: DynamoDbAlbum[] = await getAllAlbums()
+      AlbumStore.albums = albums
+
+      const albumData: DynamoDbAlbum | undefined = albums.find(
+        album => album.album_name === albumName
+      )
+
+      if (typeof albumData === "undefined") {
+        console.log("Could not find data for album")
+        return
+      }
+
+      this.setState({ album: albumData })
+    } else {
+      const albumData: DynamoDbAlbum | undefined = AlbumStore.albums.find(
+        album => album.album_name === albumName
+      )
+
+      if (typeof albumData === "undefined") {
+        console.log("Could not find data for album")
+        return
+      }
+
+      this.setState({ album: albumData })
+    }
   }
 
   _getDescriptionDisplay(): JSX.Element {
