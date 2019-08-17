@@ -4,6 +4,7 @@ type Album = {
   albumId: string
   albumName: string
   year: number
+  description: string
   tracks: Track[]
 }
 

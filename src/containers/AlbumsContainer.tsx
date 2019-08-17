@@ -48,8 +48,7 @@ export default class AlbumsContainer extends Component<{}, MyState> {
         <li className="album" key={album.album_name}>
           <Link
             to={{
-              pathname: `albums/${album.album_name}`,
-              state: { albumName: album.album_name }
+              pathname: `albums/${album.album_name}`
             }}
           >
             {album.album_name}

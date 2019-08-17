@@ -1,11 +1,12 @@
 import React, { Component } from "react"
 import { RouteComponentProps } from "react-router-dom"
+import ReactMarkdown from "react-markdown"
 
 import { getAlbum } from "../lib/api/albumApi"
+import { secondsToStringTime } from "../lib/util/helpers"
+
 import DynamoDbAlbum from "../models/DynamoDbAlbum"
 import Track from "../models/Track"
-
-import { secondsToStringTime } from "../lib/util/helpers"
 
 type MyState = { album: DynamoDbAlbum }
 
@@ -19,27 +20,32 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
       album: {
         album_id: "",
         album_name: "",
+        description: "",
         year: -1,
         tracks: []
       }
     }
 
     this._getAlbumData = this._getAlbumData.bind(this)
+    this._getTracksDisplay = this._getTracksDisplay.bind(this)
+    this._getDescriptionDisplay = this._getDescriptionDisplay.bind(this)
   }
 
   componentDidMount() {
     const pathParts = this.props.location.pathname.split("/")
     const albumName = pathParts[pathParts.length - 1]
     this._getAlbumData(albumName)
-    this._getTracksDisplay()
   }
 
   render() {
     const tracksDisplay = this._getTracksDisplay()
+    const descriptionDisplay = this._getDescriptionDisplay()
 
     return (
       <div className="home">
         <h1>-{this.state.album.album_name}-</h1>
+        Description:
+        {descriptionDisplay}
         Tracks:
         <ul className="tracks">{tracksDisplay}</ul>
       </div>
@@ -49,6 +55,13 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   async _getAlbumData(albumName: string) {
     const albumData: DynamoDbAlbum = await getAlbum(albumName)
     this.setState({ album: albumData })
+  }
+
+  _getDescriptionDisplay(): JSX.Element {
+    const descriptionDisplay: JSX.Element = (
+      <ReactMarkdown source={this.state.album.description} />
+    )
+    return descriptionDisplay
   }
 
   _getTracksDisplay() {
@@ -61,6 +74,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
           trackName: dbTrack.track_name,
           trackLength
         }
+        console.log("track", track)
         return (
           <li
             className="track"
