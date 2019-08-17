@@ -19,7 +19,7 @@ const addAlbum = async (albumData: any) => {
       },
       data: {
         albumId,
-        albumName: "Lauras"
+        albumName: ""
       }
     })
   } catch (error) {

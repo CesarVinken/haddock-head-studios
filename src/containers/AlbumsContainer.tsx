@@ -27,12 +27,11 @@ export default class AlbumsContainer extends Component<{}, MyState> {
   render() {
     const albumDisplay = this._getAlbumDisplay()
     return (
-      <div className="Home">
-        <div className="lander">
-          <h1>Albums</h1>
-          here are all albums:
-          <ul className="albums">{albumDisplay}</ul>
-        </div>
+      <div className="home">
+        <h1>Albums</h1>
+        here are all albums:
+        <ul className="albums">{albumDisplay}</ul>
+        <Link to="../">Back</Link>
       </div>
     )
   }

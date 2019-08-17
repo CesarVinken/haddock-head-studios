@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { RouteComponentProps } from "react-router-dom"
+import { RouteComponentProps, Link } from "react-router-dom"
 import ReactMarkdown from "react-markdown"
 
 import { getAlbum } from "../lib/api/albumApi"
@@ -48,6 +48,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
         {descriptionDisplay}
         Tracks:
         <ul className="tracks">{tracksDisplay}</ul>
+        <Link to="../albums">Back</Link>
       </div>
     )
   }
