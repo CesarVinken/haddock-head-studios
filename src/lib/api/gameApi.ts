@@ -3,12 +3,14 @@ import uuid from "uuid"
 
 import config from "../../config"
 import DynamoDbGame from "../../models/DynamoDbGame"
+import Game from "../../models/Game"
 
-const addGame = async (gameData: any) => {
+const addGame = async (gameData: Game) => {
   console.log("Trying to post")
-  const gameId: string = uuid.v1()
 
   try {
+    const gameId: string = uuid.v4()
+
     await Axios({
       method: "post",
       url: `${
@@ -19,12 +21,24 @@ const addGame = async (gameData: any) => {
       },
       data: {
         gameId,
-        gameName: ""
+        gameName: gameData.gameName,
+        year: gameData.year,
+        description: gameData.description,
+        headerImage: gameData.headerImage || ""
       }
     })
+    console.log("posted game")
+    return
   } catch (error) {
     console.log(error)
   }
+}
+
+const addGames = async (games: Game[]) => {
+  await games.forEach(async game => {
+    await addGame(game)
+  })
+  console.log("Added all games")
 }
 
 const getGame = async (gameName: string) => {
@@ -72,4 +86,4 @@ const getAllGames = async () => {
   }
 }
 
-export { addGame, getGame, getAllGames }
+export { addGame, addGames, getGame, getAllGames }

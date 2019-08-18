@@ -21,6 +21,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
         game_id: "",
         game_name: "",
         description: "",
+        headerImage: "",
         year: -1
       }
     }
@@ -69,8 +70,9 @@ export default class GameContainer extends Component<GameProps, MyState> {
 
   _getDescriptionDisplay(): JSX.Element {
     const descriptionDisplay: JSX.Element = (
-      <ReactMarkdown source={this.state.game.description} />
+      <ReactMarkdown source={this.state.game.description} escapeHtml={false} />
     )
+
     return descriptionDisplay
   }
 }

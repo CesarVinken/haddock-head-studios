@@ -3,12 +3,25 @@ import uuid from "uuid"
 
 import config from "../../config"
 import DynamoDbAlbum from "../../models/DynamoDbAlbum"
+import Album from "../../models/Album"
+import Track from "../../models/Track"
 
-const addAlbum = async (albumData: any) => {
+const addAlbum = async (albumData: Album) => {
   console.log("Trying to post")
-  const albumId: string = uuid.v1()
 
   try {
+    const albumId: string = uuid.v4()
+
+    const tracks: Track[] = albumData.tracks.map(track => {
+      return {
+        trackNumber: track.trackNumber,
+        trackName: track.trackName,
+        trackLength: track.trackLength,
+        trackAudio: track.trackAudio
+      }
+    })
+
+    console.log("tracks", tracks)
     await Axios({
       method: "post",
       url: `${
@@ -19,12 +32,25 @@ const addAlbum = async (albumData: any) => {
       },
       data: {
         albumId,
-        albumName: ""
+        albumName: albumData.albumName,
+        albumCover: albumData.albumCover || "",
+        year: albumData.year,
+        description: albumData.description,
+        tracks: tracks
       }
     })
+    console.log("posted album")
+    return
   } catch (error) {
     console.log(error)
   }
+}
+
+const addAlbums = async (albums: Album[]) => {
+  await albums.forEach(async album => {
+    await addAlbum(album)
+  })
+  console.log("Added all albums")
 }
 
 const getAlbum = async (albumName: string) => {
@@ -72,4 +98,4 @@ const getAllAlbums = async () => {
   }
 }
 
-export { addAlbum, getAlbum, getAllAlbums }
+export { addAlbum, addAlbums, getAlbum, getAllAlbums }

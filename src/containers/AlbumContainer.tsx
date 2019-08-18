@@ -77,7 +77,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
 
   _getDescriptionDisplay(): JSX.Element {
     const descriptionDisplay: JSX.Element = (
-      <ReactMarkdown source={this.state.album.description} />
+      <ReactMarkdown source={this.state.album.description} escapeHtml={false} />
     )
     return descriptionDisplay
   }
@@ -90,15 +90,24 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
         const track: Track = {
           trackNumber: dbTrack.track_number,
           trackName: dbTrack.track_name,
+          trackAudio: dbTrack.track_audio,
           trackLength
         }
-        console.log("track", track)
+        if (track.trackAudio && track.trackAudio !== "") {
+          track.trackName = `[${track.trackName}](${track.trackAudio})`
+        }
+        const trackLengthDisplay = track.trackLength
+          ? `(${track.trackLength})`
+          : ""
+        const fullLine = `${track.trackNumber}. ${
+          track.trackName
+        } ${trackLengthDisplay}`
         return (
           <li
             className="track"
             key={`${this.state.album.album_id}${track.trackNumber}`}
           >
-            {track.trackNumber}. {track.trackName} ({track.trackLength})
+            <ReactMarkdown source={fullLine} escapeHtml={false} />
           </li>
         )
       }
