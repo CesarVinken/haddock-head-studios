@@ -6,6 +6,7 @@ type DynamoDbGame = {
   headerImage?: string
   genre?: string[]
   screenshots?: string[]
+  tile_image?: string
 }
 
 export default DynamoDbGame

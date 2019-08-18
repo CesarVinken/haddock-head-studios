@@ -52,6 +52,11 @@ export default class GamesContainer extends Component<{}, MyState> {
     const gameDisplay: JSX.Element[] = this.state.games.map(game => {
       return (
         <li className="game" key={game.game_name}>
+          <img
+            src={game.tile_image}
+            alt={game.game_name}
+            className="menu-tile"
+          />
           <Link
             to={{
               pathname: `games/${game.game_name}`

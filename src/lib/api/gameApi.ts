@@ -24,7 +24,8 @@ const addGame = async (gameData: Game) => {
         gameName: gameData.gameName,
         year: gameData.year,
         description: gameData.description,
-        headerImage: gameData.headerImage || ""
+        headerImage: gameData.headerImage || "",
+        tileImage: gameData.tileImage
       }
     })
     console.log("posted game")

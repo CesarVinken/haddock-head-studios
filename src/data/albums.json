@@ -2,7 +2,7 @@
   {
     "albumId": "",
     "albumName": "Dragon Zoo",
-    "albumCover": "",
+    "tileImage": "/assets/images/albums/dragon-zoo.jpg",
     "year": 2007,
     "description": "Dragon Zoo was created as graduation project for the secondary school. It is a rock opera about dragons which are locked up in a zoo. At a deeper level the history is a critical assessment of the Java-War of 1830 and the betrayal of the Indonesian prince Diponegoro by the Dutch. This may sound far-fetched, and yet it is only one of the many intriguing features of the album. Another interesting point, in retrospect, is that this first album was completely recorded with one tie clip microphone.<br><br>All songs were written by Cesar Vinken, all lyrics by Imre van Son. As with later albums, Cesar Vinken played guitar, bass guitar, keys, trumpet as well as vocals. The family was brought in featuring his mother on the violin and his grandfather on the trombone.",
     "tracks": [
@@ -35,7 +35,7 @@
   {
     "albumId": "",
     "albumName": "Defined Skies",
-    "albumCover": "",
+    "tileImage": "/assets/images/albums/defined-skies.jpg",
     "year": 2009,
     "description": "This two-hour rock opera tells the story of astrobiologist Charlie and his struggle with love and success. Put together in 2008-2009 with Imre van Son, who wrote half of the songs and most of the lyrics, the megalomanic album was presented in Amsterdam in 2009 by the Circus Paranoia Band.<br><br>Charlie’s madness spawned inner voices talking to him, representing different aspects of his character. To complicate matters, the different versions of Charlie, such as Scared Charlie, excited Charlie (called “Bootsy”, after funky bass player Bootsy Collins) and Evil Charlie also started talking to each other. This of course offered the composers opportunities for duets and other interesting song structures. In the end no one is entirely sure what the story of Defined Skies meant (which in itself is arguably a necessary feature of a rockopera).<br><br>The used recording techniques were a significant step forward compared with Dragon Zoo, but did for instance still not feature real drums. On the other hand, being a rock opera, it was of course needed to make use of as many instruments as possible, including cello (Misja Boeken), saxophone (Brechtje Moerkamp) and accordion (Joost van Son). In addition a complete string ensemble and a mixed choir were recorded for some of the songs, most notably 'It Almost Sounds Like Jazz' and 'Leaving the Shadow'.",
     "tracks": [
@@ -139,7 +139,7 @@
   {
     "albumId": "",
     "albumName": "Caveman",
-    "albumCover": "",
+    "tileImage": "/assets/images/albums/caveman.jpg",
     "year": 2010,
     "description": "All songs on the concept album Caveman last exactly 12:00. They comment on the Caveman's basic needs. Musically, the goal was to create songs that maintain a song structure, even though they were stretched out over a long time.<br><br>The five themes: Sex, Sleep, Eat, Drink and Dream are inspired by a King Crimson song which included the five words in its title. Although they refer to the caveman, they are at the same time trackAudioed to people's contemporary lives, illustrating the universality of the needs. For instance, the theme of “sleep” is taken as an opportunity to explore the concept of “peace of mind”.<br><br>In good progressive rock fashion, the album features complicated musical arrangements and the extensive use of sound effects (for instance, a speech by US President Hoover in “Eat” and a devastating thunder storm in “Sleep”). Apart from the unavoidable stacks of mellotrons and organs, other instruments that can be encountered are electric violin (in “Eat”, played by Maurice Boer), trumpet and saxophone (in “Drink”, both played by Cesar Vinken).<br><br>This is the first album to feature studio recorded drums by Mathijs Tieken. All lyrics were written by Imre van Son. “Sleep” was written by Imre van Son and “Eat” by Cesar Vinken. The other songs were combined efforts. The alternating vocalists give a Beatlesque effect.",
     "tracks": [
@@ -175,7 +175,7 @@
   {
     "albumId": "",
     "albumName": "Dragon Zoo Movie",
-    "albumCover": "",
+    "tileImage": "/assets/images/albums/dragon-zoo-movie.jpg",
     "year": 2011,
     "description": "Years had past since the initial recording project Dragon Zoo. Still the feeling existed that the story had not yet fulfilled its full promise. So Cesar Vinken wrote a screenplay for an animated musical based on the original album. A cartoon would do much more justice to the story and its colourful characters.<br><br>In Dragon Zoo the movie a couple of the old songs were used and updated (I am the Dragon, Voodoo, formerly The One). In addition, the cast was expanded with several new characters, including Swampy, the bullied dragon and Dizzy and Duke, the acrobatic henchmen of Mister B., the main villain. Elements from this story were taken later and incorporated into Bards, Bees and Birds. All in all Dragon Zoo: The Movie presented a much more focussed effort than its predecessor, both storywise and musically.<br><br>This time around, the Dragon Zoo recording was done in a studio and included drums by Mathijs Tieken and vocals by Akin Moiseenkov. Song lyrics were written by Cesar Vinken and Imre van Son. The Dragon Zoo team is still looking for an animator..",
     "tracks": [
@@ -232,7 +232,7 @@
   {
     "albumId": "",
     "albumName": "The Lizard Judge",
-    "albumCover": "",
+    "tileImage": "/assets/images/albums/lizard.jpg",
     "year": 2012,
     "description": "The songs on this album are loosely connected by the notion of a coming apocalypse, in which the Lizard Judge will decide over our fates. Every song stands on itself. Some of the themes touched upon are corruption in politics (The Spin Doctor), the decadence of consumerism (Sale!) and human interference in the environment (Premium Flowers).<br><br>The dark tone of the album was chosen on purpose, as it was constructed as a tribute to the band Muse, especially their album Absolution. Musically the style of The Lizard Judge is heavier, including thick guitars and distorted baselines. However, in Muse style the album features also classical sounding piano riffs, such as in the opening track Weather Report.<br><br>Songs 3, 4, 5, 6 and 10 were written by Cesar Vinken, while the other songs were written by Imre van Son. Lyrics by Imre van Son. Vocals and most instruments were played by Cesar Vinken, except for the piano (Imre van Son) and the drums (Mathijs Tieken). It is the only album to feature Cesar Vinken on the tuba (Fantastic Voyage).",
     "tracks": [
@@ -286,7 +286,7 @@
   {
     "albumId": "",
     "albumName": "The Tear Collector",
-    "albumCover": "",
+    "tileImage": "",
     "year": 2019,
     "description": "After he gets separated from his tear collection, the Tear Collector recalls the tears he secretly collected from people. He meanwhile goes on a spiritual journey to regain access to his House of Tears. The Tear Collector is the first rock opera coming from the Dangerous Kitchen since almost a decade.<br><br>Both the tear collector and his gruff neighbour Benny Twospoons are taken straight from the game Bards, Bees and Birds and can be encountered in its demo The Mask of Mockery (see the section games). It is therefore possible that whole album takes place in the universe of Bards, Bees and Birds.<br><br>Songs 1, 3, 6, 7 and 8 were written by Cesar Vinken, while the other songs were written by Imre van Son. The instruments played by Cesar Vinken include for the first time the bağlama, a traditional double stringed Turkish guitar. This, together with the use of unusual percussion instruments such as gongs and gamelan, give the Tear Collector a mystical feeling that fits the otherworldly settings of the story.<br><br>The album is currently still in demo state with the recording of the drums (Mathijs Tieken) and vocals planned for spring 2018.",
     "tracks": [

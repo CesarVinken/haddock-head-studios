@@ -7,6 +7,8 @@ import DynamoDbAlbum from "../models/DynamoDbAlbum"
 
 import AlbumStore from "../store/AlbumStore"
 
+import PlaceholderImage from "../assets/placeholder.jpg"
+
 type MyState = { albums: Array<DynamoDbAlbum> }
 
 export default class AlbumsContainer extends Component<{}, MyState> {
@@ -52,19 +54,30 @@ export default class AlbumsContainer extends Component<{}, MyState> {
   }
 
   _getAlbumDisplay() {
-    const albumDisplay: JSX.Element[] = this.state.albums.map(album => {
-      return (
-        <li className="album" key={album.album_name}>
-          <Link
-            to={{
-              pathname: `albums/${album.album_name}`
-            }}
-          >
-            {album.album_name}
-          </Link>
-        </li>
-      )
-    })
+    const albumDisplay: JSX.Element[] = this.state.albums
+      .sort((albumA, albumB) => (albumA.year > albumB.year ? 1 : -1))
+      .map(album => {
+        const albumYearDisplay = album.year ? ` (${album.year})` : ""
+
+        return (
+          <li className="album" key={album.album_name}>
+            <img
+              src={PlaceholderImage}
+              // src={album.tile_image}
+              alt={album.album_name}
+              className="menu-tile"
+            />
+            <Link
+              to={{
+                pathname: `albums/${album.album_name}`
+              }}
+            >
+              {album.album_name}
+            </Link>
+            {albumYearDisplay}
+          </li>
+        )
+      })
     return <div>{albumDisplay}</div>
   }
 
