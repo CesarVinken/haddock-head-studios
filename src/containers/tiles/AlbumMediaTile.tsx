@@ -22,18 +22,18 @@ class AlbumMediaTile extends MediaTile<
           alt={this.state.title}
           className="tile-image"
         />
-        <div className="tile-image-overlay" />
-        <div className="tile-text-container">
-          <Link
-            to={{
-              pathname: `albums/${this.state.title}`
-            }}
-            className="tile-title"
-          >
-            {this.state.title}
-          </Link>
-          {this.state.year}
-        </div>
+        <Link
+          to={{
+            pathname: `albums/${this.state.title}`
+          }}
+          className="tile-image-overlay"
+        >
+          <div className="tile-text-container">
+            <div className="tile-title">
+              {this.state.title} {this.state.year}
+            </div>
+          </div>
+        </Link>
       </li>
     )
   }

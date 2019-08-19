@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
 
 import { getAllGames } from "../lib/api/gameApi"
 
@@ -33,7 +32,6 @@ export default class GamesContainer extends Component<{}, MyState> {
         <div className="content-centerer">
           <h1>Games</h1>
           {gamesDisplay}
-          <Link to="../">Back</Link>
         </div>
       </div>
     )

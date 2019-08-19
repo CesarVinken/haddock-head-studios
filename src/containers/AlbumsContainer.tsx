@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { Link } from "react-router-dom"
 
 import { getAllAlbums } from "../lib/api/albumApi"
 
@@ -36,7 +35,6 @@ export default class AlbumsContainer extends Component<{}, MyState> {
         <div className="content-centerer">
           <h1>Albums</h1>
           {albumDisplay}
-          <Link to="../">Back</Link>
         </div>
       </div>
     )
