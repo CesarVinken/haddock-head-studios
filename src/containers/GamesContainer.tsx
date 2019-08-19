@@ -29,11 +29,12 @@ export default class GamesContainer extends Component<{}, MyState> {
   render() {
     const gamesDisplay = this._getGameDisplay()
     return (
-      <div className="home">
-        <h1>Games</h1>
-        here are all games:
-        <ul className="games">{gamesDisplay}</ul>
-        <Link to="../">Back</Link>
+      <div className="content-wrapper">
+        <div className="content-centerer">
+          <h1>Games</h1>
+          {gamesDisplay}
+          <Link to="../">Back</Link>
+        </div>
       </div>
     )
   }
@@ -59,9 +60,10 @@ export default class GamesContainer extends Component<{}, MyState> {
           image={image}
           title={game.game_name}
           year={albumYearDisplay}
+          key={game.game_id}
         />
       )
     })
-    return <div>{gameDisplay}</div>
+    return <ul className="tiles-container">{gameDisplay}</ul>
   }
 }

@@ -49,7 +49,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
         {descriptionDisplay}
         Tracks:
         <ul className="tracks">{tracksDisplay}</ul>
-        <Link to="../albums">Back</Link>
+        <Link to="../">Back</Link>
       </div>
     )
   }

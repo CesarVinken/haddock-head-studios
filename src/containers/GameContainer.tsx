@@ -44,7 +44,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
         <h1>-{this.state.game.game_name}-</h1>
         Description:
         {descriptionDisplay}
-        <Link to="../games">Back</Link>
+        <Link to="../">Back</Link>
       </div>
     )
   }

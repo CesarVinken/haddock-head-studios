@@ -24,20 +24,24 @@ class GameMediaTile extends MediaTile<GameMediaTileProps, GameMediaTileState> {
 
   render() {
     return (
-      <li className="tile" key={this.state.title}>
+      <li className="tile-container" key={this.state.title}>
         <img
           src={this.state.image}
           alt={this.state.title}
-          className="menu-tile"
+          className="tile-image"
         />
-        <Link
-          to={{
-            pathname: `games/${this.state.title}`
-          }}
-        >
-          {this.state.title}
-        </Link>
-        {this.state.year}
+        <div className="tile-image-overlay" />
+        <div className="tile-text-container">
+          <Link
+            to={{
+              pathname: `games/${this.state.title}`
+            }}
+            className="tile-title"
+          >
+            {this.state.title}
+          </Link>
+          {this.state.year}
+        </div>
       </li>
     )
   }

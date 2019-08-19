@@ -32,11 +32,12 @@ export default class AlbumsContainer extends Component<{}, MyState> {
   render() {
     const albumDisplay = this._getAlbumDisplay()
     return (
-      <div className="home">
-        <h1>Albums</h1>
-        here are all albums:
-        <ul className="albums">{albumDisplay}</ul>
-        <Link to="../">Back</Link>
+      <div className="content-wrapper">
+        <div className="content-centerer">
+          <h1>Albums</h1>
+          {albumDisplay}
+          <Link to="../">Back</Link>
+        </div>
       </div>
     )
   }
@@ -67,10 +68,11 @@ export default class AlbumsContainer extends Component<{}, MyState> {
             image={image}
             title={album.album_name}
             year={albumYearDisplay}
+            key={album.album_id}
           />
         )
       })
-    return <div>{albumDisplay}</div>
+    return <ul className="tiles-container">{albumDisplay}</ul>
   }
 
   _handleInputChange(key: any, newValue: any) {

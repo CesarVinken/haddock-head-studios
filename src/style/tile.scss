@@ -1,0 +1,71 @@
+.tiles-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+
+  width: 96vw;
+  max-width: 350px;
+  // background-color: yellow;
+  @media #{$screen-middle} {
+    width: 86vw;
+    max-width: 450px;
+    // background-color: red;
+  }
+  @media #{$screen-middle-large} {
+    width: 75vw;
+    max-width: 620px;
+    // background-color: blue;
+  }
+  @media #{$screen-wide} {
+    max-width: 910px;
+    // background-color: green;
+  }
+
+  .tile-container {
+    padding: 6px;
+    height: 144px;
+    width: 144px;
+
+    @media #{$screen-middle} {
+      height: 190px;
+      width: 190px;
+    }
+    @media #{$screen-middle-large} {
+      height: 275px;
+      width: 275px;
+    }
+
+    position: relative;
+
+    .tile-image {
+      border-radius: 2em;
+      height: 100%;
+      width: 100%;
+    }
+    .tile-image-overlay {
+      position: absolute;
+      height: 18%;
+      width: 96%;
+      background-color: rgba(255, 255, 255, 0.5);
+      // border: 1px solid black;
+      left: 2%;
+      top: 80%;
+      border-bottom-right-radius: 2em;
+      border-bottom-left-radius: 2em;
+    }
+    .tile-text-container {
+      position: absolute;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+
+      .tile-title {
+        // text-decoration: none;
+        color: black;
+        // text-shadow: $text-shadow;
+      }
+    }
+  }
+}
