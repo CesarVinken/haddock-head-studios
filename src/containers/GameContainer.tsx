@@ -8,6 +8,8 @@ import DynamoDbGame from "../models/DynamoDbGame"
 
 import GameStore from "../store/GameStore"
 
+import PlaceholderImage from "../assets/placeholder.jpg"
+
 type MyState = { game: DynamoDbGame }
 
 interface GameProps extends RouteComponentProps<any>, React.Props<any> {}
@@ -28,6 +30,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
 
     this._getGameData = this._getGameData.bind(this)
     this._getDescriptionDisplay = this._getDescriptionDisplay.bind(this)
+    this._getScreenshotsDisplay = this._getScreenshotsDisplay.bind(this)
   }
 
   componentDidMount() {
@@ -38,13 +41,30 @@ export default class GameContainer extends Component<GameProps, MyState> {
 
   render() {
     const descriptionDisplay = this._getDescriptionDisplay()
+    const screenshotsDisplay = this._getScreenshotsDisplay()
+    const coverImage = this.state.game.tile_image
+      ? this.state.game.tile_image
+      : PlaceholderImage
 
     return (
-      <div className="home">
-        <h1>-{this.state.game.game_name}-</h1>
-        Description:
-        {descriptionDisplay}
-        <Link to="../">Back</Link>
+      <div className="content-wrapper">
+        <div className="media-info-container">
+          <div className="column-left">
+            <img
+              src={coverImage}
+              alt={this.state.game.game_name}
+              className="tile-image"
+            />
+          </div>
+          <div className="column-right">
+            <h1>{this.state.game.game_name}</h1>
+            {descriptionDisplay}
+            {screenshotsDisplay}
+          </div>
+        </div>
+        <Link to="../" className="link-back">
+          Back to main page
+        </Link>
       </div>
     )
   }
@@ -74,5 +94,31 @@ export default class GameContainer extends Component<GameProps, MyState> {
     )
 
     return descriptionDisplay
+  }
+
+  _getScreenshotsDisplay() {
+    if (typeof this.state.game.screenshots === "undefined") {
+      return undefined
+    }
+    const screenshotsDisplay: JSX.Element[] = this.state.game.screenshots.map(
+      (screenshot, index) => {
+        return (
+          <div
+            className="screenshot-image-container"
+            key={`${this.state.game.game_name}${index}`}
+          >
+            <img
+              src={PlaceholderImage}
+              // src={screenshot}
+              alt={`${this.state.game.game_name}${index}`}
+              className="screenshot-image"
+            />
+          </div>
+        )
+      }
+    )
+    return (
+      <div className="screenshots-image-container">{screenshotsDisplay}</div>
+    )
   }
 }

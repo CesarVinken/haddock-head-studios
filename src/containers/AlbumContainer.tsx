@@ -47,8 +47,8 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
       ? this.state.album.tile_image
       : PlaceholderImage
     return (
-      <div className="home">
-        <div className="album-info-container">
+      <div className="content-wrapper">
+        <div className="media-info-container">
           <div className="column-left">
             <img
               src={coverImage}

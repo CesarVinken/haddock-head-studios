@@ -5,7 +5,7 @@
     "year": 2017,
     "description": "Campfire Stories is a turn-based travelling game about impressing people with your heroic deeds. The more affected your audience is by your storytelling, the more successful you are. But simply telling a compelling story may not be enough: bringing trophies from your journeys will captivate your audience, and may offer proof that can convince sceptics.<br><br>In the game you will be travelling on a large tile-based map representing Ancient Greece. While you can find adventures in historical cities such as Sparta and Athens, you will have to go into the wild to meet real challenges. But traveling through the wilderness will wear you out, and diminish your energy to act as a real hero. Don’t forget to rest after tiring walks, but be prepared to leave as soon as possible.<br><br>Sometimes you have to fight against historical figures and mystical creatures. If there are no centaurs or three-headed dogs nearby, you may have to find a way to make up your own epic story. In the end, history is always written by the winners, and it is all up your story-telling skills. Try to collect as many convincing objects as possible and balance your ‘exaggerations’ to present an epic, yet credible experience for the listeners.",
     "genre": ["story simlator", "rpg"],
-    "screenshots": [],
+    "screenshots": ["a", "b", "c"],
     "tileImage": ""
   },
   {

@@ -10,7 +10,7 @@ const addGame = async (gameData: Game) => {
 
   try {
     const gameId: string = uuid.v4()
-
+    console.log("Game:", gameData)
     await Axios({
       method: "post",
       url: `${
@@ -25,7 +25,9 @@ const addGame = async (gameData: Game) => {
         year: gameData.year,
         description: gameData.description,
         headerImage: gameData.headerImage || "",
-        tileImage: gameData.tileImage
+        tileImage: gameData.tileImage,
+        genre: gameData.genre || [],
+        screenshots: gameData.screenshots || []
       }
     })
     console.log("posted game")
