@@ -1,0 +1,51 @@
+.track-title-line {
+  display: flex;
+  align-items: center;
+  height: 1.8em;
+}
+
+.album-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+
+  @media #{$screen-middle} {
+    flex-direction: row;
+    align-items: flex-start;
+    // padding: 0px;
+  }
+
+  .column-left {
+    padding: 0 6px;
+    max-width: 300px;
+
+    @media #{$screen-middle} {
+      max-width: auto;
+
+      padding: 20px 10px 0 0;
+      min-width: 200px;
+      width: 200px;
+      height: 200px;
+    }
+
+    @media #{$screen-middle-large} {
+      min-width: 380px;
+      width: 380px;
+      height: 380px;
+    }
+    .tile-image {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.tracks-container {
+  margin: 0;
+  padding: 0;
+}
+
+.link-back {
+  padding: 14px 0 0 6px;
+}

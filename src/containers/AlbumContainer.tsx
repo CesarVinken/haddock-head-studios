@@ -9,6 +9,8 @@ import DynamoDbAlbum from "../models/DynamoDbAlbum"
 import Track from "../models/Track"
 import AlbumStore from "../store/AlbumStore"
 
+import PlaceholderImage from "../assets/placeholder.jpg"
+
 type MyState = { album: DynamoDbAlbum }
 
 interface AlbumProps extends RouteComponentProps<any>, React.Props<any> {}
@@ -41,15 +43,29 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   render() {
     const tracksDisplay = this._getTracksDisplay()
     const descriptionDisplay = this._getDescriptionDisplay()
-
+    const coverImage = this.state.album.tile_image
+      ? this.state.album.tile_image
+      : PlaceholderImage
     return (
       <div className="home">
-        <h1>-{this.state.album.album_name}-</h1>
-        Description:
-        {descriptionDisplay}
-        Tracks:
-        <ul className="tracks">{tracksDisplay}</ul>
-        <Link to="../">Back</Link>
+        <div className="album-info-container">
+          <div className="column-left">
+            <img
+              src={coverImage}
+              alt={this.state.album.album_name}
+              className="tile-image"
+            />
+          </div>
+          <div className="column-right">
+            <h1>{this.state.album.album_name}</h1>
+            {descriptionDisplay}
+            Tracks:
+            <ul className="tracks-container">{tracksDisplay}</ul>
+          </div>
+        </div>
+        <Link to="../" className="link-back">
+          Back to main page
+        </Link>
       </div>
     )
   }
@@ -86,27 +102,27 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
     const tracksDisplay: JSX.Element[] = this.state.album.tracks.map(
       dbTrack => {
         const trackLength: string = secondsToStringTime(dbTrack.track_length)
-
         const track: Track = {
           trackNumber: dbTrack.track_number,
           trackName: dbTrack.track_name,
           trackAudio: dbTrack.track_audio,
           trackLength
         }
+
         if (track.trackAudio && track.trackAudio !== "") {
           track.trackName = `[${track.trackName}](${track.trackAudio})`
         }
         const trackLengthDisplay = track.trackLength
           ? `(${track.trackLength})`
           : ""
-        const fullLine = `${track.trackNumber}. ${
-          track.trackName
-        } ${trackLengthDisplay}`
+        const fullLine = `${track.trackName} ${trackLengthDisplay}`
+        console.log(fullLine)
         return (
           <li
-            className="track"
+            className="track-title-line"
             key={`${this.state.album.album_id}${track.trackNumber}`}
           >
+            {track.trackNumber}.{" "}
             <ReactMarkdown source={fullLine} escapeHtml={false} />
           </li>
         )
