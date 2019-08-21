@@ -6,16 +6,16 @@
 
   width: 96vw;
   max-width: 350px;
-  background-color: yellow;
+  // background-color: yellow;
   @media #{$screen-middle} {
     width: 86vw;
     max-width: 450px;
-    background-color: red;
+    // background-color: red;
   }
   @media #{$screen-middle-large} {
     width: 75vw;
     max-width: 620px;
-    background-color: blue;
+    // background-color: blue;
   }
   @media #{$screen-wide} {
     max-width: 910px;
@@ -46,7 +46,7 @@
     .tile-image-overlay {
       position: absolute;
       background-color: rgba(255, 255, 255, 0.5);
-      border: 1px solid black;
+      // border: 1px solid black;
       height: 28%;
       width: 92%;
       left: 3%;

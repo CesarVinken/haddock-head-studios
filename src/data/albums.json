@@ -66,7 +66,7 @@
       {
         "trackNumber": 7,
         "trackName": "It Almost Sounds Like Jazz",
-        "trackAudio": "http://www.haddockheadstudios.com/music/Defined-Skies-107-It-Almost-Sounds-Like-Jazz.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Defined-Skies-107-It-Almost-Sounds-Like-Jazz.mp3"
       },
       {
         "trackNumber": 8,
@@ -83,7 +83,7 @@
       {
         "trackNumber": 11,
         "trackName": "Awakening",
-        "trackAudio": "http://www.haddockheadstudios.com/music/Defined-Skies-111-Awakening.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Defined-Skies-111-Awakening.mp3"
       },
       {
         "trackNumber": 12,
@@ -100,7 +100,7 @@
       {
         "trackNumber": 15,
         "trackName": "Shadow of my Fantasy",
-        "trackAudio": "http://www.haddockheadstudios.com/music/Defined-Skies-204-Shadow-of-my-Fantasy.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Defined-Skies-204-Shadow-of-my-Fantasy.mp3"
       },
       {
         "trackNumber": 16,
@@ -152,7 +152,7 @@
         "trackNumber": 2,
         "trackName": "Sleep",
         "trackLength": "720",
-        "trackAudio": "http://www.haddockheadstudios.com/music/Caveman-02-Sleep.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Caveman-02-Sleep.mp3"
       },
       {
         "trackNumber": 3,
@@ -168,7 +168,7 @@
         "trackNumber": 5,
         "trackName": "Dream",
         "trackLength": "720",
-        "trackAudio": "http://www.haddockheadstudios.com/music/Caveman-05-Dream.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Caveman-05-Dream.mp3"
       }
     ]
   },
@@ -239,7 +239,7 @@
       {
         "trackNumber": 1,
         "trackName": "Weather Report",
-        "trackAudio": "http://www.haddockheadstudios.com/music/The-Lizard-Judge-01-Weather-Report.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-01-Weather-Report.mp3"
       },
       {
         "trackNumber": 2,
@@ -248,7 +248,7 @@
       {
         "trackNumber": 3,
         "trackName": "Turbulence",
-        "trackAudio": "http://www.haddockheadstudios.com/music/The-Lizard-Judge-03-Turbulence.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-03-Turbulence.mp3"
       },
       {
         "trackNumber": 4,
@@ -261,12 +261,12 @@
       {
         "trackNumber": 6,
         "trackName": "The Spin Doctor",
-        "trackAudio": "http://www.haddockheadstudios.com/music/The-Lizard-Judge-06-The-Spin-Doctor.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-06-The-Spin-Doctor.mp3"
       },
       {
         "trackNumber": 7,
         "trackName": "Fantastic Voyage",
-        "trackAudio": "http://www.haddockheadstudios.com/music/The-Lizard-Judge-07-Fantastic-Voyage.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-07-Fantastic-Voyage.mp3"
       },
       {
         "trackNumber": 8,
@@ -275,7 +275,7 @@
       {
         "trackNumber": 9,
         "trackName": "Laura",
-        "trackAudio": "http://www.haddockheadstudios.com/music/The-Lizard-Judge-09-Laura.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-09-Laura.mp3"
       },
       {
         "trackNumber": 10,
@@ -316,7 +316,7 @@
       },
       {
         "trackNumber": 7,
-        "trackName": "he Dream"
+        "trackName": "The Dream"
       },
       {
         "trackNumber": 8,

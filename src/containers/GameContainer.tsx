@@ -42,9 +42,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
   render() {
     const descriptionDisplay = this._getDescriptionDisplay()
     const screenshotsDisplay = this._getScreenshotsDisplay()
-    const coverImage = this.state.game.tile_image
-      ? this.state.game.tile_image
-      : "placeholder.jpg"
+    const coverImage = `/images/games/${this.state.game.tile_image}`
 
     return (
       <div className="content-wrapper">

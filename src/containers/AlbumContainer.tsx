@@ -37,13 +37,13 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
     const albumName = pathParts[pathParts.length - 1]
     this._getAlbumData(albumName)
   }
-
   render() {
+    console.log(this.state.album)
     const tracksDisplay = this._getTracksDisplay()
     const descriptionDisplay = this._getDescriptionDisplay()
-    const coverImage = this.state.album.tile_image
-      ? this.state.album.tile_image
-      : "placeholder.jpg"
+
+    const coverImage = `/images/albums/${this.state.album.tile_image}`
+
     return (
       <div className="content-wrapper">
         <div className="media-info-container">
@@ -107,21 +107,29 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
           trackLength
         }
 
-        if (track.trackAudio && track.trackAudio !== "") {
-          track.trackName = `[${track.trackName}](${track.trackAudio})`
-        }
-        const trackLengthDisplay = track.trackLength
+        const trackLengthDisplay: string = track.trackLength
           ? `(${track.trackLength})`
           : ""
-        const fullLine = `${track.trackName} ${trackLengthDisplay}`
-        console.log(fullLine)
+        const fullLine: JSX.Element =
+          track.trackAudio && track.trackAudio !== "" ? (
+            <span>
+              <a href={track.trackAudio} target="_blank">
+                {track.trackName}
+              </a>{" "}
+              {trackLengthDisplay}
+            </span>
+          ) : (
+            <span>
+              {track.trackName} {trackLengthDisplay}
+            </span>
+          )
+
         return (
           <li
             className="track-title-line"
             key={`${this.state.album.album_id}${track.trackNumber}`}
           >
-            {track.trackNumber}.{" "}
-            <ReactMarkdown source={fullLine} escapeHtml={false} />
+            {track.trackNumber}. {fullLine}
           </li>
         )
       }
