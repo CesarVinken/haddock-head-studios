@@ -6,7 +6,6 @@ import DynamoDbAlbum from "../models/DynamoDbAlbum"
 
 import AlbumStore from "../store/AlbumStore"
 
-import PlaceholderImage from "../assets/placeholder.jpg"
 import AlbumMediaTile from "./tiles/AlbumMediaTile"
 
 type MyState = { albums: Array<DynamoDbAlbum> }
@@ -60,7 +59,7 @@ export default class AlbumsContainer extends Component<{}, MyState> {
         const albumYearDisplay: string = album.year ? ` (${album.year})` : ""
         const image: string = album.tile_image
           ? album.tile_image
-          : PlaceholderImage
+          : "placeholder.jpg"
         return (
           <AlbumMediaTile
             image={image}

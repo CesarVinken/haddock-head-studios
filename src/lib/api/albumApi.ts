@@ -33,7 +33,7 @@ const addAlbum = async (albumData: Album) => {
       data: {
         albumId,
         albumName: albumData.albumName,
-        tileImage: albumData.tile_image || "",
+        tileImage: albumData.tileImage || "",
         year: albumData.year,
         description: albumData.description,
         tracks: tracks,

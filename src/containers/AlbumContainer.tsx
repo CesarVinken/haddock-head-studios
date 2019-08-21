@@ -9,8 +9,6 @@ import DynamoDbAlbum from "../models/DynamoDbAlbum"
 import Track from "../models/Track"
 import AlbumStore from "../store/AlbumStore"
 
-import PlaceholderImage from "../assets/placeholder.jpg"
-
 type MyState = { album: DynamoDbAlbum }
 
 interface AlbumProps extends RouteComponentProps<any>, React.Props<any> {}
@@ -45,7 +43,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
     const descriptionDisplay = this._getDescriptionDisplay()
     const coverImage = this.state.album.tile_image
       ? this.state.album.tile_image
-      : PlaceholderImage
+      : "placeholder.jpg"
     return (
       <div className="content-wrapper">
         <div className="media-info-container">

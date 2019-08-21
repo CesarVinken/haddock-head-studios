@@ -3,7 +3,7 @@ import Track from "./Track"
 type Album = {
   albumId: string
   albumName: string
-  tile_image?: string
+  tileImage?: string
   year: number
   description: string
   tracks: Track[]

@@ -23,13 +23,11 @@ class GameMediaTile extends MediaTile<GameMediaTileProps, GameMediaTileState> {
   }
 
   render() {
+    const tileImage = `/images/games/${this.state.image}`
+
     return (
       <li className="tile-container" key={this.state.title}>
-        <img
-          src={this.state.image}
-          alt={this.state.title}
-          className="tile-image"
-        />
+        <img src={tileImage} alt={this.state.title} className="tile-image" />
         <Link
           to={{
             pathname: `games/${this.state.title}`

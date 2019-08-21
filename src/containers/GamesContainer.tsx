@@ -6,7 +6,6 @@ import DynamoDbGame from "../models/DynamoDbGame"
 
 import GameStore from "../store/GameStore"
 import GameMediaTile from "./tiles/GameMediaTile"
-import PlaceholderImage from "../assets/placeholder.jpg"
 
 type MyState = { games: Array<DynamoDbGame> }
 
@@ -52,7 +51,9 @@ export default class GamesContainer extends Component<{}, MyState> {
   _getGameDisplay() {
     const gameDisplay: JSX.Element[] = this.state.games.map(game => {
       const albumYearDisplay: string = game.year ? ` (${game.year})` : ""
-      const image: string = game.tile_image ? game.tile_image : PlaceholderImage
+      const image: string = game.tile_image
+        ? game.tile_image
+        : "placeholder.jpg"
       return (
         <GameMediaTile
           image={image}

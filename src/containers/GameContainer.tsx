@@ -8,7 +8,7 @@ import DynamoDbGame from "../models/DynamoDbGame"
 
 import GameStore from "../store/GameStore"
 
-import PlaceholderImage from "../assets/placeholder.jpg"
+// import PlaceholderImage from "placeholder.jpg"
 
 type MyState = { game: DynamoDbGame }
 
@@ -44,7 +44,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
     const screenshotsDisplay = this._getScreenshotsDisplay()
     const coverImage = this.state.game.tile_image
       ? this.state.game.tile_image
-      : PlaceholderImage
+      : "placeholder.jpg"
 
     return (
       <div className="content-wrapper">
@@ -102,14 +102,15 @@ export default class GameContainer extends Component<GameProps, MyState> {
     }
     const screenshotsDisplay: JSX.Element[] = this.state.game.screenshots.map(
       (screenshot, index) => {
+        let image = `../assets/images/games/${screenshot}`
+
         return (
           <div
             className="screenshot-image-container"
             key={`${this.state.game.game_name}${index}`}
           >
             <img
-              src={PlaceholderImage}
-              // src={screenshot}
+              src={"placeholder.jpg"}
               alt={`${this.state.game.game_name}${index}`}
               className="screenshot-image"
             />
