@@ -8,13 +8,14 @@ import AlbumStore from "../store/AlbumStore"
 
 import AlbumMediaTile from "./tiles/AlbumMediaTile"
 
-type MyState = { albums: Array<DynamoDbAlbum> }
+type MyState = { isLoading: boolean; albums: Array<DynamoDbAlbum> }
 
 export default class AlbumsContainer extends Component<{}, MyState> {
   constructor(props: any) {
     super(props)
 
     this.state = {
+      isLoading: true,
       albums: []
     }
     this._getAllAlbums = this._getAllAlbums.bind(this)
@@ -33,6 +34,7 @@ export default class AlbumsContainer extends Component<{}, MyState> {
       <div className="content-wrapper">
         <div className="content-centerer">
           <h1>Albums</h1>
+          {this.state.isLoading && <div>Loading...</div>}
           {albumDisplay}
         </div>
       </div>
@@ -44,11 +46,11 @@ export default class AlbumsContainer extends Component<{}, MyState> {
     if (AlbumStore.albums.length < 1) {
       const albums: DynamoDbAlbum[] = await getAllAlbums()
 
-      this.setState({ albums })
+      this.setState({ isLoading: false, albums })
       AlbumStore.setAlbums(albums)
     } else {
       console.log(typeof AlbumStore.albums)
-      this.setState({ albums: AlbumStore.albums })
+      this.setState({ isLoading: false, albums: AlbumStore.albums })
     }
   }
 

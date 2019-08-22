@@ -10,7 +10,7 @@ import GameStore from "../store/GameStore"
 
 // import PlaceholderImage from "placeholder.jpg"
 
-type MyState = { game: DynamoDbGame }
+type MyState = { isLoading: boolean; game: DynamoDbGame }
 
 interface GameProps extends RouteComponentProps<any>, React.Props<any> {}
 
@@ -19,6 +19,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
     super(props)
 
     this.state = {
+      isLoading: true,
       game: {
         game_id: "",
         game_name: "",
@@ -56,6 +57,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
           </div>
           <div className="column-right">
             <h1>{this.state.game.game_name}</h1>
+            {this.state.isLoading && <div>Loading...</div>}
             {descriptionDisplay}
             {screenshotsDisplay}
           </div>
@@ -83,7 +85,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
       return
     }
 
-    this.setState({ game: gameData })
+    this.setState({ isLoading: false, game: gameData })
   }
 
   _getDescriptionDisplay(): JSX.Element {
@@ -98,7 +100,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
     if (typeof this.state.game.screenshots === "undefined") {
       return undefined
     }
-    // console.log(`/images/games/${screenshot}`)
+
     const screenshotsDisplay: JSX.Element[] = this.state.game.screenshots.map(
       (screenshot, index) => {
         let image = `/images/games/${screenshot}`

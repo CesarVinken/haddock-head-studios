@@ -9,7 +9,7 @@ import DynamoDbAlbum from "../models/DynamoDbAlbum"
 import Track from "../models/Track"
 import AlbumStore from "../store/AlbumStore"
 
-type MyState = { album: DynamoDbAlbum }
+type MyState = { isLoading: boolean; album: DynamoDbAlbum }
 
 interface AlbumProps extends RouteComponentProps<any>, React.Props<any> {}
 
@@ -18,6 +18,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
     super(props)
 
     this.state = {
+      isLoading: true,
       album: {
         album_id: "",
         album_name: "",
@@ -56,6 +57,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
           </div>
           <div className="column-right">
             <h1>{this.state.album.album_name}</h1>
+            {this.state.isLoading && <div>Loading...</div>}
             {descriptionDisplay}
             Tracks:
             <ul className="tracks-container">{tracksDisplay}</ul>
@@ -86,7 +88,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
       return
     }
 
-    this.setState({ album: albumData })
+    this.setState({ isLoading: false, album: albumData })
   }
 
   _getDescriptionDisplay(): JSX.Element {

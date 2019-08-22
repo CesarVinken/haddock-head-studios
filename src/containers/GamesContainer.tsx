@@ -7,13 +7,14 @@ import DynamoDbGame from "../models/DynamoDbGame"
 import GameStore from "../store/GameStore"
 import GameMediaTile from "./tiles/GameMediaTile"
 
-type MyState = { games: Array<DynamoDbGame> }
+type MyState = { isLoading: boolean; games: Array<DynamoDbGame> }
 
 export default class GamesContainer extends Component<{}, MyState> {
   constructor(props: any) {
     super(props)
 
     this.state = {
+      isLoading: true,
       games: []
     }
     this._getAllGames = this._getAllGames.bind(this)
@@ -30,6 +31,7 @@ export default class GamesContainer extends Component<{}, MyState> {
       <div className="content-wrapper">
         <div className="content-centerer">
           <h1>Games</h1>
+          {this.state.isLoading && <div>Loading...</div>}
           {gamesDisplay}
         </div>
       </div>
@@ -40,11 +42,12 @@ export default class GamesContainer extends Component<{}, MyState> {
     if (GameStore.games.length < 1) {
       const games: DynamoDbGame[] = await getAllGames()
 
-      this.setState({ games })
+      this.setState({ isLoading: false, games })
+
       GameStore.setGames(games)
     } else {
       console.log(typeof GameStore.games)
-      this.setState({ games: GameStore.games })
+      this.setState({ isLoading: false, games: GameStore.games })
     }
   }
 
