@@ -98,9 +98,10 @@ export default class GameContainer extends Component<GameProps, MyState> {
     if (typeof this.state.game.screenshots === "undefined") {
       return undefined
     }
+    // console.log(`/images/games/${screenshot}`)
     const screenshotsDisplay: JSX.Element[] = this.state.game.screenshots.map(
       (screenshot, index) => {
-        let image = `../assets/images/games/${screenshot}`
+        let image = `/images/games/${screenshot}`
 
         return (
           <div
@@ -108,7 +109,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
             key={`${this.state.game.game_name}${index}`}
           >
             <img
-              src={"placeholder.jpg"}
+              src={image}
               alt={`${this.state.game.game_name}${index}`}
               className="screenshot-image"
             />
