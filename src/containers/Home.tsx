@@ -10,6 +10,7 @@ export default class Home extends Component {
         <h1>Welcome to Haddock Head Studios</h1>
         <Albums />
         <Games />
+        
         <button
           onClick={e => {
             runSeed()

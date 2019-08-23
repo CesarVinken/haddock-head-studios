@@ -93,7 +93,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
 
   _getDescriptionDisplay(): JSX.Element {
     const descriptionDisplay: JSX.Element = (
-      <ReactMarkdown source={this.state.album.description} escapeHtml={false} />
+      <ReactMarkdown source={this.state.album.description} />
     )
     return descriptionDisplay
   }

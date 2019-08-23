@@ -90,7 +90,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
 
   _getDescriptionDisplay(): JSX.Element {
     const descriptionDisplay: JSX.Element = (
-      <ReactMarkdown source={this.state.game.description} escapeHtml={false} />
+      <ReactMarkdown source={this.state.game.description} />
     )
 
     return descriptionDisplay
