@@ -4,6 +4,9 @@ import { RouteComponentProps, Link, Switch, Route } from "react-router-dom"
 import WikiArticleNew from "./wiki/WikiArticleNew"
 import WikiArticleContent from "./wiki/WikiArticleContent"
 import WikiArticleEdit from "./wiki/WikiArticleEdit"
+import WikiArticleStore from "../store/WikiArticleStore"
+import DynamoDbWikiArticle from "../models/DynamoDbWikiArticle"
+import { getAllWikiArticles } from "../lib/api/wikiApi"
 
 type MyState = { isLoading: boolean }
 
@@ -18,8 +21,12 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     }
   }
 
-  componentDidMount() {}
-
+  async componentDidMount() {
+    if (WikiArticleStore.wikiArticles.length === 0) {
+      const articles: DynamoDbWikiArticle[] = await getAllWikiArticles()
+      WikiArticleStore.setWikiArticles(articles)
+    }
+  }
   render() {
     return (
       <div>
@@ -37,9 +44,7 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
             <Route
               exact
               path="/wiki/new"
-              render={() => {
-                return <WikiArticleNew />
-              }}
+              render={props => <WikiArticleNew {...props} />}
             />
             <Route
               exact
