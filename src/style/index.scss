@@ -5,8 +5,9 @@ $screen-large: "(min-width : 1024px)";
 $screen-wide: "(min-width : 1200px)";
 $text-shadow: 0px 2px 2px lightgray;
 
-@import "./tile.scss";
 @import "./home.scss";
+@import "./tile.scss";
+@import "./wiki.scss";
 @import "./media-details.scss";
 
 body {
