@@ -1,5 +1,5 @@
 type WikiArticle = {
-  id: string
+  articleId: string
   title: string
   content: string
 }

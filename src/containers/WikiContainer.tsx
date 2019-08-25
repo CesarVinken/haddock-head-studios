@@ -27,6 +27,7 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
       WikiArticleStore.setWikiArticles(articles)
     }
   }
+
   render() {
     return (
       <div>
@@ -35,9 +36,13 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
             Back to main site
           </Link>
           <h1>BBB Wiki</h1>
-          <Link to="../wiki/new">
-            <div>New article</div>
-          </Link>
+          {window.location.href.split("/")[
+            window.location.href.split("/").length - 1
+          ] !== "new" && (
+            <Link to="../wiki/new">
+              <div>New article</div>
+            </Link>
+          )}
         </div>
         <div>
           <Switch>
@@ -48,14 +53,12 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
             />
             <Route
               exact
-              path="/wiki/:articleId/"
-              render={() => {
-                return <WikiArticleContent />
-              }}
+              path="/wiki/:articleTitle/"
+              render={props => <WikiArticleContent {...props} />}
             />
             <Route
               exact
-              path="/wiki/:articleId/edit"
+              path="/wiki/:articleTitle/edit"
               render={() => {
                 return <WikiArticleEdit />
               }}

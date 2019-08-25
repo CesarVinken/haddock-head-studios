@@ -1,5 +1,5 @@
 type DynamoDbWikiArticle = {
-  id: string
+  article_id: string
   title: string
   content: string
 }
