@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Editor from "for-editor"
 
-import { getAllWikiArticles, addWikiArticle } from "../../lib/api/wikiApi"
+import { addWikiArticle } from "../../lib/api/wikiApi"
 import WikiArticle from "../../models/WikiArticle"
 import { RouteComponentProps } from "react-router"
 import WikiArticleStore from "../../store/WikiArticleStore"
@@ -9,7 +9,9 @@ import DynamoDbWikiArticle from "../../models/DynamoDbWikiArticle"
 
 type MyState = { title: string; content: string }
 
-interface WikiProps extends RouteComponentProps<any>, React.Props<any> {}
+interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
+  toggleEdit: Function
+}
 
 export default class WikiArticleNew extends Component<WikiProps, MyState> {
   constructor(props: any) {
@@ -18,12 +20,20 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
     this.state = {
       title: "",
       content: ""
-      // isLoading: true
     }
 
     this._handleTitleChange = this._handleTitleChange.bind(this)
     this._handleContentChange = this._handleContentChange.bind(this)
     this._handleSaveArticle = this._handleSaveArticle.bind(this)
+  }
+
+  componentDidMount() {
+    WikiArticleStore.currentWikiArticle = {
+      article_id: "",
+      title: "",
+      content: ""
+    }
+    this.props.toggleEdit(false)
   }
 
   render() {
@@ -57,7 +67,6 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
     this.setState({
       content: event.toString()
     })
-    console.log(this.state)
   }
 
   async _handleSaveArticle() {

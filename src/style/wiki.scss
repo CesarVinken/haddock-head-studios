@@ -4,3 +4,24 @@
   flex-direction: row;
   justify-content: space-around;
 }
+
+.article-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border-right: 1px solid gray;
+  @media #{$screen-wide} {
+    width: 280px;
+  }
+}
+
+.wiki-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  @media #{$screen-middle} {
+    flex-direction: row;
+  }
+  .article-content-container {
+    padding: 0 8px;
+  }
+}

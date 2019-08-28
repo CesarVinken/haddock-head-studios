@@ -37,6 +37,22 @@ const addWikiArticles = async (wikiArticles: WikiArticle[]) => {
   console.log("Added all wiki articles")
 }
 
+const updateWikiArticle = async (updatedWikiArticle: WikiArticle) => {
+  console.log(`Trying to update article "${updatedWikiArticle.title}"`)
+  const body: {} = {
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
+    articleId: updatedWikiArticle.articleId,
+    title: updatedWikiArticle.title,
+    content: updatedWikiArticle.content
+  }
+  await Axios.patch(
+    `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki`,
+    body
+  )
+}
+
 const getWikiArticle = async (title: string) => {
   try {
     const sanatisedTitle = title.replace(/ /g, "%20")
@@ -78,4 +94,10 @@ const getAllWikiArticles = async () => {
   }
 }
 
-export { addWikiArticle, addWikiArticles, getWikiArticle, getAllWikiArticles }
+export {
+  addWikiArticle,
+  addWikiArticles,
+  getWikiArticle,
+  getAllWikiArticles,
+  updateWikiArticle
+}

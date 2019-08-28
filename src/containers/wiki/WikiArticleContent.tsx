@@ -5,8 +5,10 @@ import WikiArticle from "../../models/WikiArticle"
 import DynamoDbWikiArticle from "../../models/DynamoDbWikiArticle"
 import { RouteComponentProps } from "react-router"
 
-type MyState = { title: string; content: string }
-interface WikiProps extends RouteComponentProps<any>, React.Props<any> {}
+type MyState = { title: string; content: string; isLoading: boolean }
+interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
+  toggleEdit: Function
+}
 
 export default class WikiArticleContent extends Component<WikiProps, MyState> {
   constructor(props: any) {
@@ -14,19 +16,22 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
 
     this.state = {
       title: "",
-      content: ""
-      // isLoading: true
+      content: "",
+      isLoading: true
     }
+
+    this._updateDisplayedArticle = this._updateDisplayedArticle.bind(this)
   }
 
   async componentDidMount() {
-    console.log(this.props)
+    console.log("mounted", this.props)
     if (WikiArticleStore.wikiArticles.length === 0) {
       console.log("we did not yet put wiki articles in the store. Wait.")
       await new Promise((resolve, reject) => {
         setTimeout(() => resolve("done!"), 1000)
       })
     }
+
     const article:
       | DynamoDbWikiArticle
       | undefined = WikiArticleStore.wikiArticles.find(
@@ -36,19 +41,41 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
     if (typeof article === "undefined") {
       return
     }
-    this.setState({ title: article.title, content: article.content })
-    // if (WikiArticleStore.wikiArticles.length === 0) {
-    //   const articles: DynamoDbWikiArticle[] = await getAllWikiArticles()
-    //   WikiArticleStore.setWikiArticles(articles)
-    // }
+    WikiArticleStore.setCurrentWikiArticle(article.title)
+    this.setState({
+      isLoading: false,
+      title: WikiArticleStore.currentWikiArticle.title,
+      content: WikiArticleStore.currentWikiArticle.content
+    })
+    this.props.toggleEdit(true)
   }
 
   render() {
+    console.log(
+      "current article in the store: ",
+      WikiArticleStore.currentWikiArticle.title
+    )
+    console.log("the state: ", this.state.title)
+    if (WikiArticleStore.currentWikiArticle.title !== this.state.title) {
+      this._updateDisplayedArticle()
+    }
+
     return (
-      <div>
+      <div className="article-content-container">
         <h1>{this.state.title}</h1>
-        <div>{this.state.content}</div>
+        <div>
+          {this.state.isLoading && <div>Loading...</div>}
+          {this.state.content}
+        </div>
       </div>
     )
+  }
+
+  _updateDisplayedArticle() {
+    console.log("upate displayed article")
+    this.setState({
+      title: WikiArticleStore.currentWikiArticle.title,
+      content: WikiArticleStore.currentWikiArticle.content
+    })
   }
 }

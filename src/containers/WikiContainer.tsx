@@ -4,11 +4,10 @@ import { RouteComponentProps, Link, Switch, Route } from "react-router-dom"
 import WikiArticleNew from "./wiki/WikiArticleNew"
 import WikiArticleContent from "./wiki/WikiArticleContent"
 import WikiArticleEdit from "./wiki/WikiArticleEdit"
+import WikiArticleSideList from "./wiki/WikiArticleSideList"
 import WikiArticleStore from "../store/WikiArticleStore"
-import DynamoDbWikiArticle from "../models/DynamoDbWikiArticle"
-import { getAllWikiArticles } from "../lib/api/wikiApi"
 
-type MyState = { isLoading: boolean }
+type MyState = { showEdit: boolean }
 
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {}
 
@@ -17,15 +16,10 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     super(props)
 
     this.state = {
-      isLoading: true
+      showEdit: false
     }
-  }
 
-  async componentDidMount() {
-    if (WikiArticleStore.wikiArticles.length === 0) {
-      const articles: DynamoDbWikiArticle[] = await getAllWikiArticles()
-      WikiArticleStore.setWikiArticles(articles)
-    }
+    this._toggleEdit = this._toggleEdit.bind(this)
   }
 
   render() {
@@ -43,24 +37,45 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               <div>New article</div>
             </Link>
           )}
+          {this.state.showEdit && (
+            <Link
+              to={`../wiki/${WikiArticleStore.currentWikiArticle.title}/edit`}
+            >
+              <div>Edit article</div>
+            </Link>
+          )}
         </div>
-        <div>
+        <div className="wiki-content-wrapper">
+          <WikiArticleSideList></WikiArticleSideList>
           <Switch>
             <Route
               exact
               path="/wiki/new"
-              render={props => <WikiArticleNew {...props} />}
+              render={props => (
+                <WikiArticleNew {...props} toggleEdit={this._toggleEdit} />
+              )}
             />
             <Route
               exact
               path="/wiki/:articleTitle/"
-              render={props => <WikiArticleContent {...props} />}
+              render={props => (
+                <WikiArticleContent {...props} toggleEdit={this._toggleEdit} />
+              )}
             />
             <Route
               exact
               path="/wiki/:articleTitle/edit"
+              render={props => {
+                return (
+                  <WikiArticleEdit {...props} toggleEdit={this._toggleEdit} />
+                )
+              }}
+            />
+            <Route
+              exact
+              path="/wiki/"
               render={() => {
-                return <WikiArticleEdit />
+                return <div>Welcome to the Bards Bees & Birds wiki</div>
               }}
             />
             {/* <Route component={NotFound} /> */}
@@ -68,5 +83,9 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
         </div>
       </div>
     )
+  }
+
+  _toggleEdit(value: boolean) {
+    this.setState({ showEdit: value })
   }
 }

@@ -13,15 +13,6 @@ export interface GameMediaTileState extends MediaTileState {
 }
 
 class GameMediaTile extends MediaTile<GameMediaTileProps, GameMediaTileState> {
-  constructor(props: GameMediaTileProps) {
-    super(props)
-
-    // this.state = {
-    //   // title: props.title,
-    //   // image: props.image
-    // }
-  }
-
   render() {
     const tileImage = `/images/games/${this.state.image}`
 

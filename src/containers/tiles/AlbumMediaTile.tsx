@@ -10,10 +10,6 @@ class AlbumMediaTile extends MediaTile<
   AlbumMediaTileProps,
   AlbumMediaTileState
 > {
-  constructor(props: AlbumMediaTileProps) {
-    super(props)
-  }
-
   render() {
     const tileImage = `/images/albums/${this.state.image}`
     return (
