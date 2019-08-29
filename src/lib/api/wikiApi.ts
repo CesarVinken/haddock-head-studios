@@ -53,6 +53,22 @@ const updateWikiArticle = async (updatedWikiArticle: WikiArticle) => {
   )
 }
 
+const deleteWikiArticle = async (wikiArticle: WikiArticle) => {
+  console.log(`Trying to delete article "${wikiArticle.title}"`)
+  console.log(wikiArticle)
+
+  await Axios({
+    method: "post",
+    url: `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki`,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
+    data: {
+      articleId: wikiArticle.articleId
+    }
+  })
+}
+
 const getWikiArticle = async (title: string) => {
   try {
     const sanatisedTitle = title.replace(/ /g, "%20")
@@ -99,5 +115,6 @@ export {
   addWikiArticles,
   getWikiArticle,
   getAllWikiArticles,
-  updateWikiArticle
+  updateWikiArticle,
+  deleteWikiArticle
 }

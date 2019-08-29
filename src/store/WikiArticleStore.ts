@@ -67,7 +67,18 @@ class WikiArticleStore {
   }
 
   @action
-  deleteWikiArticle() {}
+  deleteWikiArticle(wikiArticle: WikiArticle) {
+    const index: number = this.wikiArticles.findIndex(
+      (article: DynamoDbWikiArticle, i: number) => {
+        if (article.article_id === wikiArticle.articleId) {
+          return i
+        }
+      }
+    )
+    console.log("Length before removal:", this.wikiArticles.length)
+    this.wikiArticles.splice(index, 1)
+    console.log("Length after removal:", this.wikiArticles.length)
+  }
 }
 
 export default new WikiArticleStore()

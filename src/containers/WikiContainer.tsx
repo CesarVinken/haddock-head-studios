@@ -1,13 +1,16 @@
 import React, { Component } from "react"
 import { RouteComponentProps, Link, Switch, Route } from "react-router-dom"
 
+import { deleteWikiArticle } from "../lib/api/wikiApi"
+
 import WikiArticleNew from "./wiki/WikiArticleNew"
 import WikiArticleContent from "./wiki/WikiArticleContent"
 import WikiArticleEdit from "./wiki/WikiArticleEdit"
 import WikiArticleSideList from "./wiki/WikiArticleSideList"
 import WikiArticleStore from "../store/WikiArticleStore"
+import WikiArticle from "../models/WikiArticle"
 
-type MyState = { showEdit: boolean }
+type MyState = { showEdit: boolean; showDelete: boolean }
 
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {}
 
@@ -16,10 +19,14 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     super(props)
 
     this.state = {
-      showEdit: false
+      showEdit: false,
+      showDelete: false
     }
 
     this._toggleEdit = this._toggleEdit.bind(this)
+    this._toggleDelete = this._toggleDelete.bind(this)
+
+    this._deleteArticle = this._deleteArticle.bind(this)
   }
 
   render() {
@@ -44,6 +51,16 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               <div>Edit article</div>
             </Link>
           )}
+          {this.state.showDelete && (
+            <Link
+              to={`../`}
+              onClick={() => {
+                this._deleteArticle()
+              }}
+            >
+              <div>Delete article</div>
+            </Link>
+          )}
         </div>
         <div className="wiki-content-wrapper">
           <WikiArticleSideList></WikiArticleSideList>
@@ -52,14 +69,22 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               exact
               path="/wiki/new"
               render={props => (
-                <WikiArticleNew {...props} toggleEdit={this._toggleEdit} />
+                <WikiArticleNew
+                  {...props}
+                  toggleEdit={this._toggleEdit}
+                  toggleDelete={this._toggleDelete}
+                />
               )}
             />
             <Route
               exact
               path="/wiki/:articleTitle/"
               render={props => (
-                <WikiArticleContent {...props} toggleEdit={this._toggleEdit} />
+                <WikiArticleContent
+                  {...props}
+                  toggleEdit={this._toggleEdit}
+                  toggleDelete={this._toggleDelete}
+                />
               )}
             />
             <Route
@@ -67,7 +92,11 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               path="/wiki/:articleTitle/edit"
               render={props => {
                 return (
-                  <WikiArticleEdit {...props} toggleEdit={this._toggleEdit} />
+                  <WikiArticleEdit
+                    {...props}
+                    toggleEdit={this._toggleEdit}
+                    toggleDelete={this._toggleDelete}
+                  />
                 )
               }}
             />
@@ -87,5 +116,20 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
 
   _toggleEdit(value: boolean) {
     this.setState({ showEdit: value })
+  }
+
+  _toggleDelete(value: boolean) {
+    this.setState({ showDelete: value })
+  }
+
+  _deleteArticle() {
+    const article: WikiArticle = {
+      articleId: WikiArticleStore.currentWikiArticle.article_id,
+      title: WikiArticleStore.currentWikiArticle.title,
+      content: WikiArticleStore.currentWikiArticle.content
+    }
+
+    deleteWikiArticle(article)
+    WikiArticleStore.deleteWikiArticle(article)
   }
 }

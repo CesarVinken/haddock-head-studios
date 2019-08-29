@@ -8,6 +8,7 @@ import { RouteComponentProps } from "react-router"
 type MyState = { title: string; content: string; isLoading: boolean }
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
   toggleEdit: Function
+  toggleDelete: Function
 }
 
 export default class WikiArticleContent extends Component<WikiProps, MyState> {
@@ -48,6 +49,7 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
       content: WikiArticleStore.currentWikiArticle.content
     })
     this.props.toggleEdit(true)
+    this.props.toggleDelete(false)
   }
 
   render() {

@@ -11,6 +11,7 @@ type MyState = { title: string; content: string }
 
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
   toggleEdit: Function
+  toggleDelete: Function
 }
 
 export default class WikiArticleNew extends Component<WikiProps, MyState> {
@@ -34,6 +35,7 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
       content: ""
     }
     this.props.toggleEdit(false)
+    this.props.toggleDelete(false)
   }
 
   render() {
