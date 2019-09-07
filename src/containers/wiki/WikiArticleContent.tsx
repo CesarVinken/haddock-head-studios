@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import WikiArticleStore from '../../store/WikiArticleStore'
 import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
 import { RouteComponentProps } from 'react-router'
+import ReactMarkdown from 'react-markdown'
 
 type MyState = { title: string; content: string; isLoading: boolean }
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
@@ -60,6 +61,7 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
     if (WikiArticleStore.currentWikiArticle.title !== this.state.title) {
       this._updateDisplayedArticle()
     }
+    const contentDisplay = this._getContentDisplay()
 
     return (
       <div className="article-content-container">
@@ -68,7 +70,7 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
         </div>
         <div>
           {this.state.isLoading && <div>Loading...</div>}
-          {this.state.content}
+          {contentDisplay}
         </div>
       </div>
     )
@@ -76,9 +78,18 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
 
   _updateDisplayedArticle() {
     console.log('upate displayed article')
+
     this.setState({
       title: WikiArticleStore.currentWikiArticle.title,
       content: WikiArticleStore.currentWikiArticle.content
     })
+  }
+
+  _getContentDisplay(): JSX.Element {
+    const contentDisplay: JSX.Element = (
+      <ReactMarkdown source={this.state.content} />
+    )
+
+    return contentDisplay
   }
 }
