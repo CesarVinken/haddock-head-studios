@@ -1,6 +1,6 @@
-import { observable, action } from "mobx"
-import DynamoDbWikiArticle from "../models/DynamoDbWikiArticle"
-import WikiArticle from "../models/WikiArticle"
+import { observable, action } from 'mobx'
+import DynamoDbWikiArticle from '../models/DynamoDbWikiArticle'
+import WikiArticle from '../models/WikiArticle'
 
 class WikiArticleStore {
   @observable
@@ -8,17 +8,17 @@ class WikiArticleStore {
 
   @observable
   currentWikiArticle: DynamoDbWikiArticle = {
-    article_id: "",
-    title: "",
-    content: ""
+    article_id: '',
+    title: '',
+    content: ''
   }
 
   @action
   setCurrentWikiArticle(title: string) {
     const currentArticle = this.getWikiArticle(title)
 
-    if (typeof currentArticle === "undefined") {
-      console.log("Could not find article with title ", title)
+    if (typeof currentArticle === 'undefined') {
+      console.log('Could not find article with title ', title)
       return
     }
 
@@ -37,7 +37,7 @@ class WikiArticleStore {
 
   @action
   getAllWikiArticleTitles() {
-    return this.wikiArticles.map(article => article.title)
+    return this.wikiArticles.map(article => article.title).sort()
   }
 
   @action
@@ -48,6 +48,7 @@ class WikiArticleStore {
       content: wikiArticle.content
     }
     this.wikiArticles.push(recastWikiArticle)
+    this.wikiArticles.sort()
   }
 
   @action
@@ -75,9 +76,9 @@ class WikiArticleStore {
         }
       }
     )
-    console.log("Length before removal:", this.wikiArticles.length)
+    console.log('Length before removal:', this.wikiArticles.length)
     this.wikiArticles.splice(index, 1)
-    console.log("Length after removal:", this.wikiArticles.length)
+    console.log('Length after removal:', this.wikiArticles.length)
   }
 }
 
