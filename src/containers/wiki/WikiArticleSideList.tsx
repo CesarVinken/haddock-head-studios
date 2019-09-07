@@ -12,6 +12,7 @@ export default class WikiArticleSideList extends Component<{}, MyState> {
     this.state = {
       titles: []
     }
+    this._updateArticleTitleList = this._updateArticleTitleList.bind(this)
   }
 
   async componentDidMount() {
@@ -19,6 +20,23 @@ export default class WikiArticleSideList extends Component<{}, MyState> {
       const articles: DynamoDbWikiArticle[] = await getAllWikiArticles()
       WikiArticleStore.setWikiArticles(articles)
     }
+    this._updateArticleTitleList()
+    console.log(
+      'The current wiki article is now set: ',
+      WikiArticleStore.currentWikiArticle.title
+    )
+  }
+
+  render() {
+    const wikiArticlesTitlesInStore = WikiArticleStore.getAllWikiArticleTitles()
+    if (this.state.titles.length !== wikiArticlesTitlesInStore.length) {
+      this._updateArticleTitleList()
+    }
+
+    return <div className="article-list-container">{this.state.titles}</div>
+  }
+
+  _updateArticleTitleList() {
     const titles: string[] = WikiArticleStore.getAllWikiArticleTitles()
     const jsxTitles: JSX.Element[] = titles.map((title, i) => {
       return (
@@ -32,13 +50,5 @@ export default class WikiArticleSideList extends Component<{}, MyState> {
       )
     })
     this.setState({ titles: jsxTitles })
-    console.log(
-      'The current wiki article is now set: ',
-      WikiArticleStore.currentWikiArticle.title
-    )
-  }
-
-  render() {
-    return <div className="article-list-container">{this.state.titles}</div>
   }
 }

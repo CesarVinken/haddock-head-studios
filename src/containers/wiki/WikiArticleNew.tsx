@@ -103,7 +103,6 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
       content: this.state.content
     }
     await addWikiArticle(newWikiArticle)
-    //TODO probably need to take out spaces from title
     console.log('start redirect...')
     WikiArticleStore.addWikiArticle(newWikiArticle)
     this.props.history.push(`/wiki/${newWikiArticle.title}`)
