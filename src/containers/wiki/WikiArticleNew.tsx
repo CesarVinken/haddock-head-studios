@@ -40,21 +40,26 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
 
   render() {
     return (
-      <div>
-        New Article
+      <div className="article-content-container">
+        <div className="title-container"><h1>New Article</h1></div>
+        <div className="edit-title-container">
         <input
           placeholder={"Title"}
+          className="edit-title-input"
           value={this.state.title}
           onChange={e => {
             this._handleTitleChange(e)
           }}
         />
-        <Editor
-          placeholder={"Article content.."}
-          value={this.state.content}
-          onChange={this._handleContentChange}
-        />
-        <button onClick={this._handleSaveArticle}>Save</button>
+        </div>
+        <div className="editor-container">
+          <Editor
+            placeholder={"Article content.."}
+            value={this.state.content}
+            onChange={this._handleContentChange}
+          />
+          <button onClick={this._handleSaveArticle}>Save</button>
+        </div>
       </div>
     )
   }

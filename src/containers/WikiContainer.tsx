@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import { RouteComponentProps, Link, Switch, Route } from "react-router-dom"
+import React, { Component } from 'react'
+import { RouteComponentProps, Link, Switch, Route } from 'react-router-dom'
 
-import { deleteWikiArticle } from "../lib/api/wikiApi"
+import { deleteWikiArticle } from '../lib/api/wikiApi'
 
-import WikiArticleNew from "./wiki/WikiArticleNew"
-import WikiArticleContent from "./wiki/WikiArticleContent"
-import WikiArticleEdit from "./wiki/WikiArticleEdit"
-import WikiArticleSideList from "./wiki/WikiArticleSideList"
-import WikiArticleStore from "../store/WikiArticleStore"
-import WikiArticle from "../models/WikiArticle"
+import WikiArticleNew from './wiki/WikiArticleNew'
+import WikiArticleContent from './wiki/WikiArticleContent'
+import WikiArticleEdit from './wiki/WikiArticleEdit'
+import WikiArticleSideList from './wiki/WikiArticleSideList'
+import WikiArticleStore from '../store/WikiArticleStore'
+import WikiArticle from '../models/WikiArticle'
 
 type MyState = { showEdit: boolean; showDelete: boolean }
 
@@ -33,13 +33,13 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     return (
       <div>
         <div className="nav-bar">
-          <Link to="../" className="link-back">
+          <Link to="../" className="nav-link">
             Back to main site
           </Link>
           <h1>BBB Wiki</h1>
-          {window.location.href.split("/")[
-            window.location.href.split("/").length - 1
-          ] !== "new" && (
+          {window.location.href.split('/')[
+            window.location.href.split('/').length - 1
+          ] !== 'new' && (
             <Link to="../wiki/new">
               <div>New article</div>
             </Link>
@@ -104,7 +104,13 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               exact
               path="/wiki/"
               render={() => {
-                return <div>Welcome to the Bards Bees & Birds wiki</div>
+                return (
+                  <div className="article-content-container">
+                    <div className="title-container">
+                      <h1>Welcome to the Bards Bees & Birds wiki</h1>
+                    </div>
+                  </div>
+                )
               }}
             />
             {/* <Route component={NotFound} /> */}

@@ -1,15 +1,14 @@
-import React, { Component } from "react"
-import WikiArticleStore from "../../store/WikiArticleStore"
-import { getAllWikiArticles } from "../../lib/api/wikiApi"
-import DynamoDbWikiArticle from "../../models/DynamoDbWikiArticle"
-import { Link } from "react-router-dom"
+import React, { Component } from 'react'
+import WikiArticleStore from '../../store/WikiArticleStore'
+import { getAllWikiArticles } from '../../lib/api/wikiApi'
+import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
+import { Link } from 'react-router-dom'
 
 type MyState = { titles: JSX.Element[] }
 
 export default class WikiArticleSideList extends Component<{}, MyState> {
   constructor(props: any) {
     super(props)
-    console.log("MY PROPS", props)
     this.state = {
       titles: []
     }
@@ -24,7 +23,7 @@ export default class WikiArticleSideList extends Component<{}, MyState> {
     const jsxTitles: JSX.Element[] = titles.map((title, i) => {
       return (
         <Link
-          to={`../wiki/${title}`}
+          to={`/wiki/${title}`}
           key={i}
           onClick={() => WikiArticleStore.setCurrentWikiArticle(title)}
         >
@@ -34,7 +33,7 @@ export default class WikiArticleSideList extends Component<{}, MyState> {
     })
     this.setState({ titles: jsxTitles })
     console.log(
-      "The current wiki article is now set: ",
+      'The current wiki article is now set: ',
       WikiArticleStore.currentWikiArticle.title
     )
   }

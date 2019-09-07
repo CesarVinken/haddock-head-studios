@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import Editor from "for-editor"
-import { RouteComponentProps } from "react-router-dom"
-import WikiArticleStore from "../../store/WikiArticleStore"
-import { updateWikiArticle } from "../../lib/api/wikiApi"
-import DynamoDbWikiArticle from "../../models/DynamoDbWikiArticle"
-import WikiArticle from "../../models/WikiArticle"
+import React, { Component } from 'react'
+import Editor from 'for-editor'
+import { RouteComponentProps } from 'react-router-dom'
+import WikiArticleStore from '../../store/WikiArticleStore'
+import { updateWikiArticle } from '../../lib/api/wikiApi'
+import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
+import WikiArticle from '../../models/WikiArticle'
 
 type MyState = { articleId: string; title: string; content: string }
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
@@ -17,9 +17,9 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
     super(props)
 
     this.state = {
-      articleId: "",
-      title: "",
-      content: ""
+      articleId: '',
+      title: '',
+      content: ''
     }
 
     this._handleTitleChange = this._handleTitleChange.bind(this)
@@ -28,12 +28,6 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
   }
 
   componentDidMount() {
-    // WikiArticleStore.currentWikiArticle = {
-    //   article_id: "",
-    //   title: "",
-    //   content: ""
-    // }
-
     const article:
       | DynamoDbWikiArticle
       | undefined = WikiArticleStore.getWikiArticle(
@@ -42,9 +36,9 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
     this.props.toggleEdit(false)
     this.props.toggleDelete(true)
 
-    if (typeof article === "undefined") {
+    if (typeof article === 'undefined') {
       console.log(
-        "Could not find article",
+        'Could not find article',
         this.props.match.params.articleTitle
       )
       return
@@ -59,14 +53,18 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
 
   render() {
     return (
-      <div>
-        <div>{this.state.title}</div>
-        <Editor
-          placeholder={"Article content.."}
-          value={this.state.content}
-          onChange={this._handleContentChange}
-        />
-        <button onClick={this._handleSaveChangeToArticle}>Save</button>
+      <div className="article-content-container">
+        <div className="title-container">
+          <h1>{this.state.title}</h1>
+        </div>
+        <div className="editor-container">
+          <Editor
+            placeholder={'Article content..'}
+            value={this.state.content}
+            onChange={this._handleContentChange}
+          />
+          <button onClick={this._handleSaveChangeToArticle}>Save</button>
+        </div>
       </div>
     )
   }
@@ -91,7 +89,7 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
     }
     await updateWikiArticle(updatedWikiArticle)
 
-    console.log("start redirect...")
+    console.log('start redirect...')
     WikiArticleStore.updateWikiArticle(updatedWikiArticle)
 
     this.props.history.push(`/wiki/${updatedWikiArticle.title}`)

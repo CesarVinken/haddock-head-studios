@@ -3,6 +3,8 @@
   align-items: center;
   flex-direction: row;
   justify-content: space-around;
+  background-color: whitesmoke;
+  height: 80px;
 }
 
 .article-list-container {
@@ -10,6 +12,7 @@
   flex-direction: column;
   width: 250px;
   border-right: 1px solid gray;
+  padding: 6px 2px 2px 6px;
   @media #{$screen-wide} {
     width: 280px;
   }
@@ -18,10 +21,32 @@
 .wiki-content-wrapper {
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 80px);
+
   @media #{$screen-middle} {
     flex-direction: row;
   }
   .article-content-container {
-    padding: 0 8px;
+    padding: 6px 2px 2px 6px;
+
+    display: flex;
+    flex-flow: column;
+    height: calc(100% - 100px);
+    .title-container {
+      margin: 4px 0;
+    }
+    .edit-title-container {
+      width: 100%;
+      margin: 0 0 6px 0;
+      .edit-title-input {
+        width: 100%;
+      }
+    }
+    .editor-container {
+      flex: 1 1 auto;
+      .for-container {
+        height: 100%;
+      }
+    }
   }
 }

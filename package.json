@@ -29,7 +29,6 @@
   "scripts": {
     "dev:app": "parcel watch src/app/index.html",
     "dev:server": "nodemon --watch src/server src/server/index.js",
-    "dev": "concurrently -n app,server -c green,blue \"npm run dev:app\" \"npm run dev:server\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
