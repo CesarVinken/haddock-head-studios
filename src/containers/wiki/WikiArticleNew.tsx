@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import Editor from "for-editor"
+import React, { Component } from 'react'
+import Editor from 'for-editor'
 
-import { addWikiArticle } from "../../lib/api/wikiApi"
-import WikiArticle from "../../models/WikiArticle"
-import { RouteComponentProps } from "react-router"
-import WikiArticleStore from "../../store/WikiArticleStore"
-import DynamoDbWikiArticle from "../../models/DynamoDbWikiArticle"
+import { addWikiArticle } from '../../lib/api/wikiApi'
+import WikiArticle from '../../models/WikiArticle'
+import { RouteComponentProps } from 'react-router'
+import WikiArticleStore from '../../store/WikiArticleStore'
+import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
 
 type MyState = { title: string; content: string }
 
@@ -19,8 +19,8 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
     super(props)
 
     this.state = {
-      title: "",
-      content: ""
+      title: '',
+      content: ''
     }
 
     this._handleTitleChange = this._handleTitleChange.bind(this)
@@ -30,9 +30,9 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
 
   componentDidMount() {
     WikiArticleStore.currentWikiArticle = {
-      article_id: "",
-      title: "",
-      content: ""
+      article_id: '',
+      title: '',
+      content: ''
     }
     this.props.toggleEdit(false)
     this.props.toggleDelete(false)
@@ -41,24 +41,28 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
   render() {
     return (
       <div className="article-content-container">
-        <div className="title-container"><h1>New Article</h1></div>
+        <div className="title-container">
+          <h1>New Article</h1>
+        </div>
         <div className="edit-title-container">
-        <input
-          placeholder={"Title"}
-          className="edit-title-input"
-          value={this.state.title}
-          onChange={e => {
-            this._handleTitleChange(e)
-          }}
-        />
+          <input
+            placeholder={'Title'}
+            className="edit-title-input"
+            value={this.state.title}
+            onChange={e => {
+              this._handleTitleChange(e)
+            }}
+          />
         </div>
         <div className="editor-container">
           <Editor
-            placeholder={"Article content.."}
+            placeholder={'Article content..'}
             value={this.state.content}
             onChange={this._handleContentChange}
           />
-          <button onClick={this._handleSaveArticle}>Save</button>
+          <button className="save-button" onClick={this._handleSaveArticle}>
+            Save
+          </button>
         </div>
       </div>
     )
@@ -77,8 +81,8 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
   }
 
   async _handleSaveArticle() {
-    if (this.state.title === "" || this.state.title === "new") {
-      console.log("Cannot add article. Article should have a title")
+    if (this.state.title === '' || this.state.title === 'new') {
+      console.log('Cannot add article. Article should have a title')
       return
     }
 
@@ -86,21 +90,21 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
       | DynamoDbWikiArticle
       | undefined = WikiArticleStore.getWikiArticle(this.state.title)
 
-    if (typeof alreadyExistingArticle !== "undefined") {
+    if (typeof alreadyExistingArticle !== 'undefined') {
       console.log(
-        "Cannot add article. There already is an article with this title"
+        'Cannot add article. There already is an article with this title'
       )
       return
     }
 
     const newWikiArticle: WikiArticle = {
-      articleId: "",
+      articleId: '',
       title: this.state.title,
       content: this.state.content
     }
     await addWikiArticle(newWikiArticle)
     //TODO probably need to take out spaces from title
-    console.log("start redirect...")
+    console.log('start redirect...')
     WikiArticleStore.addWikiArticle(newWikiArticle)
     this.props.history.push(`/wiki/${newWikiArticle.title}`)
   }

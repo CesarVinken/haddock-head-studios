@@ -63,7 +63,12 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
             value={this.state.content}
             onChange={this._handleContentChange}
           />
-          <button onClick={this._handleSaveChangeToArticle}>Save</button>
+          <button
+            className="save-button"
+            onClick={this._handleSaveChangeToArticle}
+          >
+            Save
+          </button>
         </div>
       </div>
     )

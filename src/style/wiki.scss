@@ -10,11 +10,11 @@
 .article-list-container {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  min-width: 250px;
   border-right: 1px solid gray;
   padding: 6px 2px 2px 6px;
   @media #{$screen-wide} {
-    width: 280px;
+    min-width: 280px;
   }
 }
 
@@ -28,7 +28,7 @@
   }
   .article-content-container {
     padding: 6px 2px 2px 6px;
-
+    width: 100%;
     display: flex;
     flex-flow: column;
     height: calc(100% - 100px);
@@ -44,8 +44,17 @@
     }
     .editor-container {
       flex: 1 1 auto;
+      padding: 0 4px 0 0;
       .for-container {
         height: 100%;
+      }
+      .save-button {
+        background-color: whitesmoke;
+        color: green;
+        margin: 6px 0;
+        width: 120px;
+        height: 28px;
+        font-size: 1rem;
       }
     }
   }
