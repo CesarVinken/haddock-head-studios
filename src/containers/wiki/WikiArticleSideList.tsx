@@ -4,22 +4,26 @@ import { getAllWikiArticles } from '../../lib/api/wikiApi'
 import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
 import { Link } from 'react-router-dom'
 
-type MyState = { titles: JSX.Element[] }
+type MyState = { titles: JSX.Element[]; isLoading: boolean }
 
 export default class WikiArticleSideList extends Component<{}, MyState> {
   constructor(props: any) {
     super(props)
     this.state = {
-      titles: []
+      titles: [],
+      isLoading: true
     }
     this._updateArticleTitleList = this._updateArticleTitleList.bind(this)
   }
 
   async componentDidMount() {
     if (WikiArticleStore.wikiArticles.length === 0) {
+      this.setState({ isLoading: true })
       const articles: DynamoDbWikiArticle[] = await getAllWikiArticles()
       WikiArticleStore.setWikiArticles(articles)
     }
+    this.setState({ isLoading: false })
+
     this._updateArticleTitleList()
     console.log(
       'The current wiki article is now set: ',
@@ -33,7 +37,15 @@ export default class WikiArticleSideList extends Component<{}, MyState> {
       this._updateArticleTitleList()
     }
 
-    return <div className="article-list-container">{this.state.titles}</div>
+    return (
+      <div className="article-list-wrapper">
+        {this.state.isLoading ? (
+          <div>Loading articles...</div>
+        ) : (
+          <div className="article-list-container">{this.state.titles}</div>
+        )}
+      </div>
+    )
   }
 
   _updateArticleTitleList() {

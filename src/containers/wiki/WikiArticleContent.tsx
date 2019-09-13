@@ -25,12 +25,21 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
   }
 
   async componentDidMount() {
-    console.log('mounted', this.props)
     if (WikiArticleStore.wikiArticles.length === 0) {
       console.log('we did not yet put wiki articles in the store. Wait.')
       await new Promise((resolve, reject) => {
-        setTimeout(() => resolve('done!'), 1000)
+        setTimeout(() => resolve('done!'), 1500)
       })
+      if (WikiArticleStore.wikiArticles.length === 0) {
+        await new Promise((resolve, reject) => {
+          setTimeout(() => resolve('done!'), 2000)
+        })
+        if (WikiArticleStore.wikiArticles.length === 0) {
+          await new Promise((resolve, reject) => {
+            setTimeout(() => resolve('done!'), 2000)
+          })
+        }
+      }
     }
 
     const article:
@@ -40,6 +49,7 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
     )
 
     if (typeof article === 'undefined') {
+      console.log('could not find article.')
       return
     }
     WikiArticleStore.setCurrentWikiArticle(article.title)

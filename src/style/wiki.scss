@@ -7,14 +7,16 @@
   height: 80px;
 }
 
-.article-list-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 250px;
+.article-list-wrapper {
   border-right: 1px solid gray;
   padding: 6px 2px 2px 6px;
+  min-width: 250px;
   @media #{$screen-wide} {
     min-width: 280px;
+  }
+  .article-list-container {
+    display: flex;
+    flex-direction: column;
   }
 }
 
