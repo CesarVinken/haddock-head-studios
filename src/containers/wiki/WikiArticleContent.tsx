@@ -52,6 +52,8 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
       console.log('could not find article.')
       return
     }
+
+    console.log('mounted')
     WikiArticleStore.setCurrentWikiArticle(article.title)
     this.setState({
       isLoading: false,
@@ -63,6 +65,22 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
   }
 
   render() {
+    console.log(
+      'in the link',
+      window.location.href.split('/')[
+        window.location.href.split('/').length - 1
+      ]
+    )
+    if (
+      window.location.href.split('/')[
+        window.location.href.split('/').length - 1
+      ] !== WikiArticleStore.currentWikiArticle.title
+    ) {
+      const title = window.location.href
+        .split('/')
+        [window.location.href.split('/').length - 1].replace('%20', ' ')
+      WikiArticleStore.setCurrentWikiArticle(title)
+    }
     console.log(
       'current article in the store: ',
       WikiArticleStore.currentWikiArticle.title

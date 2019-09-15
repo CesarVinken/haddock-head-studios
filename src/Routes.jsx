@@ -10,6 +10,6 @@ export default () => (
     <Route path="/" exact component={Home} />
     <Route path="/albums/:albumName" exact component={Album} />
     <Route path="/games/:gameName" exact component={Game} />
-    <Route path="/wiki" exact component={Wiki} />
+    <Route path="/wiki" component={Wiki} />
   </Switch>
 )
