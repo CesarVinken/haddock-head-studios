@@ -90,6 +90,7 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
     console.log('upate displayed article')
 
     this.setState({
+      isLoading: false,
       title: WikiArticleStore.currentWikiArticle.title,
       content: WikiArticleStore.currentWikiArticle.content
     })

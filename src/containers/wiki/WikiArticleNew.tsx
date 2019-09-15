@@ -49,8 +49,8 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
             placeholder={'Title'}
             className="edit-title-input"
             value={this.state.title}
-            onChange={e => {
-              this._handleTitleChange(e)
+            onChange={value => {
+              this._handleTitleChange(value)
             }}
           />
         </div>
@@ -58,7 +58,9 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
           <Editor
             placeholder={'Article content..'}
             value={this.state.content}
-            onChange={this._handleContentChange}
+            onChange={e => {
+              this._handleContentChange(e)
+            }}
           />
           <button className="save-button" onClick={this._handleSaveArticle}>
             Save
@@ -74,9 +76,9 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
     })
   }
 
-  _handleContentChange(event: React.FormEvent<HTMLInputElement>) {
+  _handleContentChange(content: string) {
     this.setState({
-      content: event.toString()
+      content: content
     })
   }
 

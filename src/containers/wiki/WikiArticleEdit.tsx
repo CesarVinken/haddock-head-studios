@@ -22,7 +22,6 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
       content: ''
     }
 
-    this._handleTitleChange = this._handleTitleChange.bind(this)
     this._handleContentChange = this._handleContentChange.bind(this)
     this._handleSaveChangeToArticle = this._handleSaveChangeToArticle.bind(this)
   }
@@ -74,15 +73,9 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
     )
   }
 
-  _handleTitleChange(event: React.FormEvent<HTMLInputElement>) {
+  _handleContentChange(content: string) {
     this.setState({
-      title: event.currentTarget.value
-    })
-  }
-
-  _handleContentChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({
-      content: event.toString()
+      content: content
     })
   }
 

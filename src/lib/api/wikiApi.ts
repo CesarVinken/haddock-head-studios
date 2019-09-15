@@ -70,7 +70,6 @@ const deleteWikiArticle = async (wikiArticle: WikiArticle) => {
 }
 
 const getWikiArticle = async (title: string) => {
-  console.log('hello?')
   try {
     const sanatisedTitle = title.replace(/ /g, '%20')
     console.log(`Trying to get article "${sanatisedTitle}"`)
