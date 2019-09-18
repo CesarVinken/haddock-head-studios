@@ -5,3 +5,40 @@
   flex-direction: column;
   align-items: center;
 }
+
+.title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .title-container {
+    width: 96vw;
+    max-width: 350px;
+    margin: 10px 0 0 52px;
+    // background-color: yellow;
+    @media #{$screen-middle} {
+      width: 86vw;
+      max-width: 450px;
+      // background-color: red;
+    }
+    @media #{$screen-middle-large} {
+      width: 75vw;
+      max-width: 620px;
+      margin: 14px 0 0 52px;
+      // background-color: blue;
+    }
+    @media #{$screen-wide} {
+      max-width: 910px;
+      // background-color: green;
+    }
+
+    h1 {
+      line-height: 0.85em;
+    }
+
+    .subtitle {
+      display: inline-block;
+      border-bottom: 2px solid lightgray;
+    }
+  }
+}

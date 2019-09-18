@@ -1,11 +1,11 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
-import { getAllGames } from "../lib/api/gameApi"
+import { getAllGames } from '../lib/api/gameApi'
 
-import DynamoDbGame from "../models/DynamoDbGame"
+import DynamoDbGame from '../models/DynamoDbGame'
 
-import GameStore from "../store/GameStore"
-import GameMediaTile from "./tiles/GameMediaTile"
+import GameStore from '../store/GameStore'
+import GameMediaTile from './tiles/GameMediaTile'
 
 type MyState = { isLoading: boolean; games: Array<DynamoDbGame> }
 
@@ -30,9 +30,11 @@ export default class GamesContainer extends Component<{}, MyState> {
     return (
       <div className="content-wrapper">
         <div className="content-centerer">
-          <h1>Games</h1>
-          {this.state.isLoading && <div>Loading...</div>}
-          {gamesDisplay}
+          <div className="tiles-wrapper">
+            <h1>Games</h1>
+            {this.state.isLoading && <div>Loading...</div>}
+            {gamesDisplay}
+          </div>
         </div>
       </div>
     )
@@ -53,10 +55,10 @@ export default class GamesContainer extends Component<{}, MyState> {
 
   _getGameDisplay() {
     const gameDisplay: JSX.Element[] = this.state.games.map(game => {
-      const albumYearDisplay: string = game.year ? ` (${game.year})` : ""
+      const albumYearDisplay: string = game.year ? ` (${game.year})` : ''
       const image: string = game.tile_image
         ? game.tile_image
-        : "placeholder.jpg"
+        : 'placeholder.jpg'
       return (
         <GameMediaTile
           image={image}

@@ -1,23 +1,30 @@
-import React, { Component } from "react"
-import Albums from "./AlbumsContainer"
-import Games from "./GamesContainer"
-import { runSeed } from "../data/seed"
+import React, { Component } from 'react'
+import Albums from './AlbumsContainer'
+import Games from './GamesContainer'
+import { runSeed } from '../data/seed'
 
 export default class Home extends Component {
   render() {
     return (
       <div className="content-wrapper">
-        <h1>Welcome to Haddock Head Studios</h1>
+        <div className="title-wrapper">
+          <div className="title-container">
+            <h1>Haddock Head Studios</h1>
+            <h3 className="subtitle">Music and Games</h3>
+            {/* {'~~~~~~~~~~~~~~~'} */}
+            {/* <hr></hr> */}
+          </div>
+        </div>
         <Albums />
         <Games />
-        
-        <button
+
+        {/* <button
           onClick={e => {
             runSeed()
           }}
         >
           Seed
-        </button>
+        </button> */}
       </div>
     )
   }

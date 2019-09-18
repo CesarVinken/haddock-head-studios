@@ -1,12 +1,12 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 
-import { getAllAlbums } from "../lib/api/albumApi"
+import { getAllAlbums } from '../lib/api/albumApi'
 
-import DynamoDbAlbum from "../models/DynamoDbAlbum"
+import DynamoDbAlbum from '../models/DynamoDbAlbum'
 
-import AlbumStore from "../store/AlbumStore"
+import AlbumStore from '../store/AlbumStore'
 
-import AlbumMediaTile from "./tiles/AlbumMediaTile"
+import AlbumMediaTile from './tiles/AlbumMediaTile'
 
 type MyState = { isLoading: boolean; albums: Array<DynamoDbAlbum> }
 
@@ -33,9 +33,11 @@ export default class AlbumsContainer extends Component<{}, MyState> {
     return (
       <div className="content-wrapper">
         <div className="content-centerer">
-          <h1>Albums</h1>
-          {this.state.isLoading && <div>Loading...</div>}
-          {albumDisplay}
+          <div className="tiles-wrapper">
+            <h1>Albums</h1>
+            {this.state.isLoading && <div>Loading...</div>}
+            {albumDisplay}
+          </div>
         </div>
       </div>
     )
@@ -58,10 +60,10 @@ export default class AlbumsContainer extends Component<{}, MyState> {
     const albumDisplay: JSX.Element[] = this.state.albums
       .sort((albumA, albumB) => (albumA.year > albumB.year ? 1 : -1))
       .map(album => {
-        const albumYearDisplay: string = album.year ? ` (${album.year})` : ""
+        const albumYearDisplay: string = album.year ? ` (${album.year})` : ''
         const image: string = album.tile_image
           ? album.tile_image
-          : "placeholder.jpg"
+          : 'placeholder.jpg'
         return (
           <AlbumMediaTile
             image={image}

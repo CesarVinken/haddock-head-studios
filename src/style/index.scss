@@ -1,19 +1,20 @@
-$screen-small: "(min-width : 360px)";
-$screen-middle: "(min-width : 540px)";
-$screen-middle-large: "(min-width : 770px)"; // ipad width
-$screen-large: "(min-width : 1024px)";
-$screen-wide: "(min-width : 1200px)";
+$screen-small: '(min-width : 360px)';
+$screen-middle: '(min-width : 540px)';
+$screen-middle-large: '(min-width : 770px)'; // ipad width
+$screen-large: '(min-width : 1024px)';
+$screen-wide: '(min-width : 1200px)';
 $text-shadow: 0px 2px 2px lightgray;
 
-@import "./home.scss";
-@import "./tile.scss";
-@import "./wiki.scss";
-@import "./media-details.scss";
+@import './home.scss';
+@import './tile.scss';
+@import './wiki.scss';
+@import './media-details.scss';
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -21,15 +22,29 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+a,
+li,
+ul,
+p {
+  font-family: 'Nunito Sans';
 }
 
 button {
   background-color: grey;
 }
 
-h1 {
+h1,
+h2,
+h3,
+ul {
   margin: 0;
 }
 

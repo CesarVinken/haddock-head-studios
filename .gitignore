@@ -5,3 +5,4 @@ dist/
 config/dev.js
 build/
 public/
+assets/music

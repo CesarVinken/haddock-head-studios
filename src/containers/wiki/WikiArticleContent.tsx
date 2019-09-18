@@ -65,12 +65,6 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
   }
 
   render() {
-    console.log(
-      'in the link',
-      window.location.href.split('/')[
-        window.location.href.split('/').length - 1
-      ]
-    )
     if (
       window.location.href.split('/')[
         window.location.href.split('/').length - 1
