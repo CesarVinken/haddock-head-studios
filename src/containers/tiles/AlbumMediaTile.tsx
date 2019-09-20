@@ -1,6 +1,6 @@
-import * as React from "react"
-import { MediaTileProps, MediaTileState, MediaTile } from "./MediaTile"
-import { Link } from "react-router-dom"
+import * as React from 'react'
+import { MediaTileProps, MediaTileState, MediaTile } from './MediaTile'
+import { Link } from 'react-router-dom'
 
 export interface AlbumMediaTileProps extends MediaTileProps {}
 

@@ -12,6 +12,7 @@
   .column-left {
     padding: 0 6px;
     max-width: 300px;
+    margin: 0 16px 0 0;
 
     @media #{$screen-middle} {
       max-width: auto;
