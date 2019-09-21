@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import { RouteComponentProps, Link, Switch, Route } from 'react-router-dom'
 
-import { deleteWikiArticle } from '../lib/api/wikiApi'
-
 import WikiArticleNew from './wiki/WikiArticleNew'
 import WikiArticleContent from './wiki/WikiArticleContent'
 import WikiArticleEdit from './wiki/WikiArticleEdit'
 import WikiArticleSideList from './wiki/WikiArticleSideList'
 import WikiArticleStore from '../store/WikiArticleStore'
 import WikiArticle from '../models/WikiArticle'
+import DeleteWikiArticleModal from './wiki/DeleteWikiArticleModal'
 
-type MyState = { showEdit: boolean; showDelete: boolean }
+type MyState = {
+  showEditButton: boolean
+  showDeleteButton: boolean
+  deleteModalIsOpen: boolean
+}
 
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {}
 
@@ -19,14 +22,21 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     super(props)
 
     this.state = {
-      showEdit: false,
-      showDelete: false
+      showEditButton: false,
+      showDeleteButton: false,
+      deleteModalIsOpen: false
     }
 
-    this._toggleEdit = this._toggleEdit.bind(this)
-    this._toggleDelete = this._toggleDelete.bind(this)
+    this._toggleEditButtonVisibility = this._toggleEditButtonVisibility.bind(
+      this
+    )
+    this._toggleDeleteButtonVisibility = this._toggleDeleteButtonVisibility.bind(
+      this
+    )
 
-    this._deleteArticle = this._deleteArticle.bind(this)
+    this._toggleDeleteModalVisibility = this._toggleDeleteModalVisibility.bind(
+      this
+    )
   }
 
   render() {
@@ -44,26 +54,31 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               <div>New article</div>
             </Link>
           )}
-          {this.state.showEdit && (
+          {this.state.showEditButton && (
             <Link
               to={`../wiki/${WikiArticleStore.currentWikiArticle.title}/edit`}
             >
               <div>Edit article</div>
             </Link>
           )}
-          {this.state.showDelete && (
-            <Link
-              to={`../`}
+          {this.state.showDeleteButton && (
+            <button
               onClick={() => {
-                this._deleteArticle()
+                this._toggleDeleteModalVisibility(true)
               }}
             >
               <div>Delete article</div>
-            </Link>
+            </button>
           )}
         </div>
         <div className="wiki-content-wrapper">
           <WikiArticleSideList></WikiArticleSideList>
+          {this.state.deleteModalIsOpen && (
+            <DeleteWikiArticleModal
+              {...this.props}
+              toggleDeleteModalVisibility={this._toggleDeleteModalVisibility}
+            ></DeleteWikiArticleModal>
+          )}
           <Switch>
             <Route
               exact
@@ -71,8 +86,10 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               render={props => (
                 <WikiArticleNew
                   {...props}
-                  toggleEdit={this._toggleEdit}
-                  toggleDelete={this._toggleDelete}
+                  toggleEditButtonVisibility={this._toggleEditButtonVisibility}
+                  toggleDeleteButtonVisibility={
+                    this._toggleDeleteButtonVisibility
+                  }
                 />
               )}
             />
@@ -82,8 +99,10 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
               render={props => (
                 <WikiArticleContent
                   {...props}
-                  toggleEdit={this._toggleEdit}
-                  toggleDelete={this._toggleDelete}
+                  toggleEditButtonVisibility={this._toggleEditButtonVisibility}
+                  toggleDeleteButtonVisibility={
+                    this._toggleDeleteButtonVisibility
+                  }
                 />
               )}
             />
@@ -94,8 +113,12 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
                 return (
                   <WikiArticleEdit
                     {...props}
-                    toggleEdit={this._toggleEdit}
-                    toggleDelete={this._toggleDelete}
+                    toggleEditButtonVisibility={
+                      this._toggleEditButtonVisibility
+                    }
+                    toggleDeleteButtonVisibility={
+                      this._toggleDeleteButtonVisibility
+                    }
                   />
                 )
               }}
@@ -189,22 +212,16 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     )
   }
 
-  _toggleEdit(value: boolean) {
-    this.setState({ showEdit: value })
+  _toggleEditButtonVisibility(value: boolean) {
+    this.setState({ showEditButton: value })
   }
 
-  _toggleDelete(value: boolean) {
-    this.setState({ showDelete: value })
+  _toggleDeleteButtonVisibility(value: boolean) {
+    this.setState({ showDeleteButton: value })
   }
 
-  _deleteArticle() {
-    const article: WikiArticle = {
-      articleId: WikiArticleStore.currentWikiArticle.article_id,
-      title: WikiArticleStore.currentWikiArticle.title,
-      content: WikiArticleStore.currentWikiArticle.content
-    }
-
-    deleteWikiArticle(article)
-    WikiArticleStore.deleteWikiArticle(article)
+  _toggleDeleteModalVisibility(value: boolean) {
+    console.log('toggle visibility to ', value)
+    this.setState({ deleteModalIsOpen: value })
   }
 }

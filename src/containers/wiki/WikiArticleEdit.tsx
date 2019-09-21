@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import Editor from 'for-editor'
 import { RouteComponentProps } from 'react-router-dom'
+
 import WikiArticleStore from '../../store/WikiArticleStore'
 import { updateWikiArticle } from '../../lib/api/wikiApi'
 import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
 import WikiArticle from '../../models/WikiArticle'
+import DeleteWikiArticleModal from './DeleteWikiArticleModal'
 
 type MyState = { articleId: string; title: string; content: string }
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
-  toggleEdit: Function
-  toggleDelete: Function
+  toggleEditButtonVisibility: Function
+  toggleDeleteButtonVisibility: Function
 }
 
 export default class WikiArticleEdit extends Component<WikiProps, MyState> {
@@ -32,8 +34,8 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
       | undefined = WikiArticleStore.getWikiArticle(
       this.props.match.params.articleTitle
     )
-    this.props.toggleEdit(false)
-    this.props.toggleDelete(true)
+    this.props.toggleEditButtonVisibility(false)
+    this.props.toggleDeleteButtonVisibility(true)
 
     if (typeof article === 'undefined') {
       console.log(
@@ -58,9 +60,9 @@ export default class WikiArticleEdit extends Component<WikiProps, MyState> {
         </div>
         <div className="editor-container">
           <Editor
-            placeholder={'Article content..'}
+            // placeholder={'Article content..'}
             value={this.state.content}
-            onChange={this._handleContentChange}
+            onChange={e => this._handleContentChange(e)}
           />
           <button
             className="save-button"

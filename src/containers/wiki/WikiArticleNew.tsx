@@ -10,8 +10,8 @@ import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
 type MyState = { title: string; content: string }
 
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
-  toggleEdit: Function
-  toggleDelete: Function
+  toggleEditButtonVisibility: Function
+  toggleDeleteButtonVisibility: Function
 }
 
 export default class WikiArticleNew extends Component<WikiProps, MyState> {
@@ -34,8 +34,8 @@ export default class WikiArticleNew extends Component<WikiProps, MyState> {
       title: '',
       content: ''
     }
-    this.props.toggleEdit(false)
-    this.props.toggleDelete(false)
+    this.props.toggleEditButtonVisibility(false)
+    this.props.toggleDeleteButtonVisibility(false)
   }
 
   render() {

@@ -7,8 +7,8 @@ import ReactMarkdown from 'react-markdown'
 
 type MyState = { title: string; content: string; isLoading: boolean }
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {
-  toggleEdit: Function
-  toggleDelete: Function
+  toggleEditButtonVisibility: Function
+  toggleDeleteButtonVisibility: Function
 }
 
 export default class WikiArticleContent extends Component<WikiProps, MyState> {
@@ -60,8 +60,8 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
       title: WikiArticleStore.currentWikiArticle.title,
       content: WikiArticleStore.currentWikiArticle.content
     })
-    this.props.toggleEdit(true)
-    this.props.toggleDelete(false)
+    this.props.toggleEditButtonVisibility(true)
+    this.props.toggleDeleteButtonVisibility(false)
   }
 
   render() {
