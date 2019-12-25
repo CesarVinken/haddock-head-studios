@@ -152,7 +152,7 @@
         "trackNumber": 2,
         "trackName": "Sleep",
         "trackLength": "720",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Caveman-02-Sleep.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/caveman/02_Sleep.mp3"
       },
       {
         "trackNumber": 3,
@@ -168,7 +168,7 @@
         "trackNumber": 5,
         "trackName": "Dream",
         "trackLength": "720",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/Caveman-05-Dream.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/caveman/05_Dream.mp3"
       }
     ]
   },
@@ -239,7 +239,7 @@
       {
         "trackNumber": 1,
         "trackName": "Weather Report",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-01-Weather-Report.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/the_lizard_judge/01_Weather_Report.mp3"
       },
       {
         "trackNumber": 2,
@@ -248,7 +248,7 @@
       {
         "trackNumber": 3,
         "trackName": "Turbulence",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-03-Turbulence.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/the_lizard_judge/03_Turbulence.mp3"
       },
       {
         "trackNumber": 4,
@@ -261,12 +261,12 @@
       {
         "trackNumber": 6,
         "trackName": "The Spin Doctor",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-06-The-Spin-Doctor.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/the_lizard_judge/06_The_Spin_Doctor.mp3"
       },
       {
         "trackNumber": 7,
         "trackName": "Fantastic Voyage",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-07-Fantastic-Voyage.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/the_lizard_judge/07_Fantastic_Voyage.mp3"
       },
       {
         "trackNumber": 8,
@@ -275,7 +275,7 @@
       {
         "trackNumber": 9,
         "trackName": "Laura",
-        "trackAudio": "http://www.haddockheadstudios.com/assets/music/The-Lizard-Judge-09-Laura.mp3"
+        "trackAudio": "http://www.haddockheadstudios.com/assets/music/the_lizard_judge/09_Laura.mp3"
       },
       {
         "trackNumber": 10,

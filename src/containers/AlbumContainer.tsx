@@ -1,13 +1,13 @@
-import React, { Component } from "react"
-import { RouteComponentProps, Link } from "react-router-dom"
-import ReactMarkdown from "react-markdown"
+import React, { Component } from 'react'
+import { RouteComponentProps, Link } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 
-import { getAllAlbums } from "../lib/api/albumApi"
-import { secondsToStringTime } from "../lib/util/helpers"
+import { getAllAlbums } from '../lib/api/albumApi'
+import { secondsToStringTime } from '../lib/util/helpers'
 
-import DynamoDbAlbum from "../models/DynamoDbAlbum"
-import Track from "../models/Track"
-import AlbumStore from "../store/AlbumStore"
+import DynamoDbAlbum from '../models/DynamoDbAlbum'
+import Track from '../models/Track'
+import AlbumStore from '../store/AlbumStore'
 
 type MyState = { isLoading: boolean; album: DynamoDbAlbum }
 
@@ -20,9 +20,9 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
     this.state = {
       isLoading: true,
       album: {
-        album_id: "",
-        album_name: "",
-        description: "",
+        album_id: '',
+        album_name: '',
+        description: '',
         year: -1,
         tracks: []
       }
@@ -34,7 +34,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   }
 
   componentDidMount() {
-    const pathParts = this.props.location.pathname.split("/")
+    const pathParts = this.props.location.pathname.split('/')
     const albumName = pathParts[pathParts.length - 1]
     this._getAlbumData(albumName)
   }
@@ -83,8 +83,8 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
       )
     }
 
-    if (typeof albumData === "undefined") {
-      console.log("Could not find data for album")
+    if (typeof albumData === 'undefined') {
+      console.log('Could not find data for album')
       return
     }
 
@@ -111,13 +111,17 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
 
         const trackLengthDisplay: string = track.trackLength
           ? `(${track.trackLength})`
-          : ""
+          : ''
         const fullLine: JSX.Element =
-          track.trackAudio && track.trackAudio !== "" ? (
+          track.trackAudio && track.trackAudio !== '' ? (
             <span>
-              <a href={track.trackAudio} target="_blank">
+              <a
+                href={track.trackAudio}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {track.trackName}
-              </a>{" "}
+              </a>{' '}
               {trackLengthDisplay}
             </span>
           ) : (

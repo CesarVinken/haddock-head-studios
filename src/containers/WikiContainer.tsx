@@ -6,7 +6,6 @@ import WikiArticleContent from './wiki/WikiArticleContent'
 import WikiArticleEdit from './wiki/WikiArticleEdit'
 import WikiArticleSideList from './wiki/WikiArticleSideList'
 import WikiArticleStore from '../store/WikiArticleStore'
-import WikiArticle from '../models/WikiArticle'
 import DeleteWikiArticleModal from './wiki/DeleteWikiArticleModal'
 
 type MyState = {

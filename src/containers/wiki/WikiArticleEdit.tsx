@@ -6,7 +6,6 @@ import WikiArticleStore from '../../store/WikiArticleStore'
 import { updateWikiArticle } from '../../lib/api/wikiApi'
 import DynamoDbWikiArticle from '../../models/DynamoDbWikiArticle'
 import WikiArticle from '../../models/WikiArticle'
-import DeleteWikiArticleModal from './DeleteWikiArticleModal'
 
 type MyState = { articleId: string; title: string; content: string }
 interface WikiProps extends RouteComponentProps<any>, React.Props<any> {

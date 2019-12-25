@@ -71,8 +71,8 @@ export default class WikiArticleContent extends Component<WikiProps, MyState> {
       ] !== WikiArticleStore.currentWikiArticle.title
     ) {
       const title = window.location.href
-        .split('/')
-        [window.location.href.split('/').length - 1].replace('%20', ' ')
+        .split('/')[window.location.href.split('/').length - 1]
+        .replace('%20', ' ')
       WikiArticleStore.setCurrentWikiArticle(title)
     }
     console.log(

@@ -14,16 +14,17 @@ class AlbumMediaTile extends MediaTile<
     const tileImage = `/images/albums/${this.state.image}`
     return (
       <li className="tile-container" key={this.state.title}>
-        <img src={tileImage} alt={this.state.title} className="tile-image" />
         <Link
           to={{
             pathname: `albums/${this.state.title}`
           }}
-          className="tile-image-overlay"
         >
-          <div className="tile-text-container">
-            <div className="tile-title">
-              {this.state.title} {this.state.year}
+          <img src={tileImage} alt={this.state.title} className="tile-image" />
+          <div className="tile-image-overlay">
+            <div className="tile-text-container">
+              <div className="tile-title">
+                {this.state.title} {this.state.year}
+              </div>
             </div>
           </div>
         </Link>
