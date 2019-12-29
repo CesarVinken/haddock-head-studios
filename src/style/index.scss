@@ -4,6 +4,7 @@ $screen-middle-large: '(min-width : 770px)'; // ipad width
 $screen-large: '(min-width : 1024px)';
 $screen-wide: '(min-width : 1200px)';
 $text-shadow: 0px 2px 2px lightgray;
+$header-text-color: #333;
 
 @import './home.scss';
 @import './tile.scss';
@@ -26,6 +27,12 @@ code {
     monospace;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  color: $header-text-color;
+}
 h1,
 h2,
 h3,

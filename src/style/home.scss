@@ -10,11 +10,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #333;
+  border-bottom: 3px solid lightgray;
+
+  h1,
+  h3 {
+    color: white;
+  }
 
   .title-container {
     width: 96vw;
     max-width: 350px;
-    margin: 10px 0 0 52px;
+    margin: 10px 0 4px 52px;
     // background-color: yellow;
     @media #{$screen-middle} {
       width: 86vw;
@@ -24,7 +31,7 @@
     @media #{$screen-middle-large} {
       width: 75vw;
       max-width: 620px;
-      margin: 14px 0 0 52px;
+      margin: 14px 0 4px 52px;
       // background-color: blue;
     }
     @media #{$screen-wide} {
@@ -38,7 +45,7 @@
 
     .subtitle {
       display: inline-block;
-      border-bottom: 2px solid lightgray;
+      // border-bottom: 2px solid lightgray;
     }
   }
 }
