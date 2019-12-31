@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import { RouteComponentProps, Link } from "react-router-dom"
-import ReactMarkdown from "react-markdown"
+import React, { Component } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 
-import { getAllGames } from "../lib/api/gameApi"
+import { getAllGames } from '../lib/api/gameApi'
 
-import DynamoDbGame from "../models/DynamoDbGame"
+import DynamoDbGame from '../models/DynamoDbGame'
 
-import GameStore from "../store/GameStore"
+import GameStore from '../store/GameStore'
 
 // import PlaceholderImage from "placeholder.jpg"
 
@@ -21,10 +21,10 @@ export default class GameContainer extends Component<GameProps, MyState> {
     this.state = {
       isLoading: true,
       game: {
-        game_id: "",
-        game_name: "",
-        description: "",
-        headerImage: "",
+        game_id: '',
+        game_name: '',
+        description: '',
+        headerImage: '',
         year: -1
       }
     }
@@ -35,7 +35,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
   }
 
   componentDidMount() {
-    const pathParts = this.props.location.pathname.split("/")
+    const pathParts = this.props.location.pathname.split('/')
     const gameName = pathParts[pathParts.length - 1]
     this._getGameData(gameName)
   }
@@ -47,24 +47,25 @@ export default class GameContainer extends Component<GameProps, MyState> {
 
     return (
       <div className="content-wrapper">
-        <div className="media-info-container">
-          <div className="column-left">
-            <img
-              src={coverImage}
-              alt={this.state.game.game_name}
-              className="tile-image"
-            />
-          </div>
-          <div className="column-right">
-            <h1>{this.state.game.game_name}</h1>
-            {this.state.isLoading && <div>Loading...</div>}
-            {descriptionDisplay}
-            {screenshotsDisplay}
+        <div className="content-centerer">
+          <div className="content-container">
+            <div className="media-info-container">
+              <div className="column-left">
+                <img
+                  src={coverImage}
+                  alt={this.state.game.game_name}
+                  className="tile-image"
+                />
+              </div>
+              <div className="column-right">
+                <h1>{this.state.game.game_name}</h1>
+                {this.state.isLoading && <div>Loading...</div>}
+                {descriptionDisplay}
+                {screenshotsDisplay}
+              </div>
+            </div>
           </div>
         </div>
-        <Link to="../" className="link-back">
-          Back to main page
-        </Link>
       </div>
     )
   }
@@ -80,8 +81,8 @@ export default class GameContainer extends Component<GameProps, MyState> {
       gameData = GameStore.games.find(game => game.game_name === gameName)
     }
 
-    if (typeof gameData === "undefined") {
-      console.log("Could not find data for game")
+    if (typeof gameData === 'undefined') {
+      console.log('Could not find data for game')
       return
     }
 
@@ -97,7 +98,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
   }
 
   _getScreenshotsDisplay() {
-    if (typeof this.state.game.screenshots === "undefined") {
+    if (typeof this.state.game.screenshots === 'undefined') {
       return undefined
     }
 

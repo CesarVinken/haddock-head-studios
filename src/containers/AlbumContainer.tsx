@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { RouteComponentProps, Link } from 'react-router-dom'
+import { RouteComponentProps } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
 import { getAllAlbums } from '../lib/api/albumApi'
@@ -47,25 +47,26 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
 
     return (
       <div className="content-wrapper">
-        <div className="media-info-container">
-          <div className="column-left">
-            <img
-              src={coverImage}
-              alt={this.state.album.album_name}
-              className="tile-image"
-            />
-          </div>
-          <div className="column-right">
-            <h1>{this.state.album.album_name}</h1>
-            {this.state.isLoading && <div>Loading...</div>}
-            {descriptionDisplay}
-            Tracks:
-            <ul className="tracks-container">{tracksDisplay}</ul>
+        <div className="content-centerer">
+          <div className="content-container">
+            <div className="media-info-container">
+              <div className="column-left">
+                <img
+                  src={coverImage}
+                  alt={this.state.album.album_name}
+                  className="tile-image"
+                />
+              </div>
+              <div className="column-right">
+                <h1>{this.state.album.album_name}</h1>
+                {this.state.isLoading && <div>Loading...</div>}
+                {descriptionDisplay}
+                Tracks:
+                <ul className="tracks-container">{tracksDisplay}</ul>
+              </div>
+            </div>
           </div>
         </div>
-        <Link to="../" className="link-back">
-          Back to main page
-        </Link>
       </div>
     )
   }

@@ -42,9 +42,9 @@ export default class WikiContainer extends Component<WikiProps, MyState> {
     return (
       <div>
         <div className="nav-bar">
-          <Link to="../" className="nav-link">
+          {/* <Link to="../" className="nav-link">
             Back to main site
-          </Link>
+          </Link> */}
           <h1>BBB Wiki</h1>
           {window.location.href.split('/')[
             window.location.href.split('/').length - 1
