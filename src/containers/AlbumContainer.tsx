@@ -8,6 +8,7 @@ import { secondsToStringTime } from '../lib/util/helpers'
 import DynamoDbAlbum from '../models/DynamoDbAlbum'
 import Track from '../models/Track'
 import AlbumStore from '../store/AlbumStore'
+import AlbumTrack from './AlbumTrack'
 
 type MyState = { isLoading: boolean; album: DynamoDbAlbum }
 
@@ -61,7 +62,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
                 <h1>{this.state.album.album_name}</h1>
                 {this.state.isLoading && <div>Loading...</div>}
                 {descriptionDisplay}
-                Tracks:
+                Track Listening:
                 <ul className="tracks-container">{tracksDisplay}</ul>
               </div>
             </div>
@@ -102,45 +103,21 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   _getTracksDisplay() {
     const tracksDisplay: JSX.Element[] = this.state.album.tracks.map(
       dbTrack => {
-        const trackLength: string = secondsToStringTime(dbTrack.track_length)
-        const track: Track = {
-          trackNumber: dbTrack.track_number,
-          trackName: dbTrack.track_name,
-          trackAudio: dbTrack.track_audio,
-          trackLength
-        }
-
-        const trackLengthDisplay: string = track.trackLength
-          ? `(${track.trackLength})`
-          : ''
-        const fullLine: JSX.Element =
-          track.trackAudio && track.trackAudio !== '' ? (
-            <span>
-              <a
-                href={track.trackAudio}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {track.trackName}
-              </a>{' '}
-              {trackLengthDisplay}
-            </span>
-          ) : (
-            <span>
-              {track.trackName} {trackLengthDisplay}
-            </span>
-          )
-
-        return (
-          <li
-            className="track-title-line"
-            key={`${this.state.album.album_id}${track.trackNumber}`}
-          >
-            {track.trackNumber}. {fullLine}
-          </li>
-        )
+        return <AlbumTrack track={dbTrack}></AlbumTrack>
       }
     )
-    return <div>{tracksDisplay}</div>
+    return (
+      <div>
+        <div className="track-wrapper">
+          <div className="audio-sample">Sample</div>
+          <div className="track-number"></div>
+          <div className="track-content-wrapper">
+            <div className="track-name">Title</div>
+            <div className="track-length">Time</div>
+          </div>
+        </div>
+        {tracksDisplay}
+      </div>
+    )
   }
 }

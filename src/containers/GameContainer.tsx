@@ -50,18 +50,11 @@ export default class GameContainer extends Component<GameProps, MyState> {
         <div className="content-centerer">
           <div className="content-container">
             <div className="media-info-container">
-              <div className="column-left">
-                <img
-                  src={coverImage}
-                  alt={this.state.game.game_name}
-                  className="tile-image"
-                />
-              </div>
+              <div className="column-left">{screenshotsDisplay}</div>
               <div className="column-right">
                 <h1>{this.state.game.game_name}</h1>
                 {this.state.isLoading && <div>Loading...</div>}
                 {descriptionDisplay}
-                {screenshotsDisplay}
               </div>
             </div>
           </div>
