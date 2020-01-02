@@ -8,8 +8,6 @@ import DynamoDbGame from '../models/DynamoDbGame'
 
 import GameStore from '../store/GameStore'
 
-// import PlaceholderImage from "placeholder.jpg"
-
 type MyState = { isLoading: boolean; game: DynamoDbGame }
 
 interface GameProps extends RouteComponentProps<any>, React.Props<any> {}
@@ -43,7 +41,6 @@ export default class GameContainer extends Component<GameProps, MyState> {
   render() {
     const descriptionDisplay = this._getDescriptionDisplay()
     const screenshotsDisplay = this._getScreenshotsDisplay()
-    const coverImage = `/images/games/${this.state.game.tile_image}`
 
     return (
       <div className="content-wrapper">
@@ -55,6 +52,7 @@ export default class GameContainer extends Component<GameProps, MyState> {
                 <h1>{this.state.game.game_name}</h1>
                 {this.state.isLoading && <div>Loading...</div>}
                 {descriptionDisplay}
+                {screenshotsDisplay}
               </div>
             </div>
           </div>
@@ -104,11 +102,13 @@ export default class GameContainer extends Component<GameProps, MyState> {
             className="screenshot-image-container"
             key={`${this.state.game.game_name}${index}`}
           >
-            <img
-              src={image}
-              alt={`${this.state.game.game_name}${index}`}
-              className="screenshot-image"
-            />
+            <a href={image} target="_blank" rel="noopener noreferrer">
+              <img
+                src={image}
+                alt={`${this.state.game.game_name}${index}`}
+                className="screenshot-image"
+              />
+            </a>
           </div>
         )
       }
