@@ -21,7 +21,8 @@
   .title-container {
     width: 96vw;
     max-width: 350px;
-    margin: 10px 0 4px 52px;
+    margin: 10px 0 4px 40px;
+    // margin: 10px 0 4px 52px;
     // background-color: yellow;
     @media #{$screen-middle} {
       width: 86vw;

@@ -32,7 +32,7 @@ export default class AlbumTrack extends Component<IAlbumTrack> {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {this.props.track.track_name}
+          <strong>{this.props.track.track_name}</strong>
         </a>
       </div>
     ) : (

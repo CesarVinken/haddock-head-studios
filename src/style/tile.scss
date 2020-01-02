@@ -1,6 +1,6 @@
 .tiles-wrapper {
   h1 {
-    margin: 20px 0 0 48px;
+    margin: 20px 0 0 50px;
   }
   .tiles-container {
     align-content: center;
@@ -10,31 +10,31 @@
     align-content: center;
 
     width: 96vw;
-    max-width: 350px;
+    max-width: 380px;
     // background-color: yellow;
     @media #{$screen-middle} {
       width: 86vw;
-      max-width: 450px;
+      max-width: 470px;
       // background-color: red;
     }
     @media #{$screen-middle-large} {
       width: 75vw;
-      max-width: 620px;
+      max-width: 630px;
       // background-color: blue;
     }
     @media #{$screen-wide} {
-      max-width: 910px;
+      max-width: 920px;
       // background-color: green;
     }
 
     .tile-container {
       padding: 6px;
-      height: 144px;
-      width: 144px;
+      height: 150px;
+      width: 150px;
 
       @media #{$screen-middle} {
-        height: 190px;
-        width: 190px;
+        height: 194px;
+        width: 194px;
       }
       @media #{$screen-middle-large} {
         height: 275px;

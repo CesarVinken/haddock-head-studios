@@ -62,7 +62,7 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
                 <h1>{this.state.album.album_name}</h1>
                 {this.state.isLoading && <div>Loading...</div>}
                 {descriptionDisplay}
-                Track Listening:
+                <strong>Track Listening:</strong>
                 <ul className="tracks-container">{tracksDisplay}</ul>
               </div>
             </div>
@@ -108,12 +108,18 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
     )
     return (
       <div>
-        <div className="track-wrapper">
-          <div className="audio-sample">Sample</div>
-          <div className="track-number"></div>
+        <div className="track-wrapper track-header">
+          <div className="audio-sample-header">
+            <strong>Sample</strong>
+          </div>
+          {/* <div className="track-number"></div> */}
           <div className="track-content-wrapper">
-            <div className="track-name">Title</div>
-            <div className="track-length">Time</div>
+            <div className="track-name-header">
+              <strong>Title</strong>
+            </div>
+            <div className="track-length-header">
+              <strong>Time</strong>
+            </div>
           </div>
         </div>
         {tracksDisplay}
