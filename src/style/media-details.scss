@@ -94,6 +94,7 @@
     .screenshot-image-container {
       margin: 0 0 6px 0;
       min-width: 200px;
+      width: 200px;
       height: 200px;
       display: flex;
       flex-direction: column;
@@ -103,7 +104,9 @@
       overflow: hidden;
 
       .screenshot-image {
+        padding: 6px 0 0 0;
         height: auto;
+        width: 100%;
         max-width: 200px;
         max-height: 200px;
       }
