@@ -112,7 +112,6 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
           <div className="audio-sample-header">
             <strong>Sample</strong>
           </div>
-          {/* <div className="track-number"></div> */}
           <div className="track-content-wrapper">
             <div className="track-name-header">
               <strong>Title</strong>

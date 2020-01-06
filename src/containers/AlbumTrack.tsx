@@ -15,8 +15,13 @@ export default class AlbumTrack extends Component<IAlbumTrack> {
           href={this.props.track.track_audio}
           target="_blank"
           rel="noopener noreferrer"
+          className="audio-sample-link"
         >
-          X
+          <img
+            src={'./playsample.png'}
+            alt="playback"
+            className="audio-sample-image"
+          ></img>
         </a>
       </div>
     ) : (
