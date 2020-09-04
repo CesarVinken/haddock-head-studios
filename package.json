@@ -13,7 +13,7 @@
     "for-editor": "^0.3.5",
     "mobx": "^5.15.1",
     "mobx-react": "^6.1.4",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "nodemon": "^1.19.4",
     "parcel": "^1.12.4",
     "react": "^16.12.0",
