@@ -13,9 +13,7 @@ const addGame = async (gameData: Game) => {
     console.log("Game:", gameData)
     await Axios({
       method: "post",
-      url: `${
-        config.proxy.PROXY_URL
-      }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/game`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/game`,
       headers: {
         "Access-Control-Allow-Origin": "*"
       },
@@ -50,9 +48,7 @@ const getGame = async (gameName: string) => {
     console.log(`Trying to get game "${sanatisedGameName}"`)
     const data = await Axios({
       method: "get",
-      url: `${
-        config.proxy.PROXY_URL
-      }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/game/${sanatisedGameName}`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/game/${sanatisedGameName}`,
       headers: {
         "Access-Control-Allow-Origin": "*"
       }
@@ -72,9 +68,7 @@ const getAllGames = async () => {
   try {
     const res = await Axios({
       method: "get",
-      url: `${
-        config.proxy.PROXY_URL
-      }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/game`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/game`,
       headers: {
         "Access-Control-Allow-Origin": "*"
       }

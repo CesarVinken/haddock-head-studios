@@ -5,7 +5,7 @@ export default {
   },
   apiGateway: {
     REGION: "YOUR_API_GATEWAY_REGION",
-    URL: "YOUR_API_GATEWAY_URL"
+    URL: "https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default"
   },
   cognito: {
     REGION: "YOUR_COGNITO_REGION",
@@ -14,6 +14,6 @@ export default {
     IDENTITY_POOL_ID: "YOUR_IDENTITY_POOL_ID"
   },
   proxy: {
-    PROXY_URL: "https://cors-anywhere.herokuapp.com/"
+    PROXY_URL: "https://thingproxy.freeboard.io/fetch/"
   }
 }

@@ -24,9 +24,7 @@ const addAlbum = async (albumData: Album) => {
     console.log("tracks", tracks)
     await Axios({
       method: "post",
-      url: `${
-        config.proxy.PROXY_URL
-      }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/album`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/album`,
       headers: {
         "Access-Control-Allow-Origin": "*"
       },
@@ -62,7 +60,7 @@ const getAlbum = async (albumName: string) => {
       method: "get",
       url: `${
         config.proxy.PROXY_URL
-      }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/album/${sanatisedAlbumName}`,
+      }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/album`,
       headers: {
         "Access-Control-Allow-Origin": "*"
       }
@@ -79,14 +77,17 @@ const getAlbum = async (albumName: string) => {
 
 const getAllAlbums = async () => {
   console.log("Trying to get all albums")
+  console.log("Trying to get all albums")
   try {
+    const fullUrl = `${config.apiGateway.URL}/album`
+    console.log(`Full URl is ${fullUrl}`);
     const res = await Axios({
       method: "get",
       url: `${
         config.proxy.PROXY_URL
       }https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/album`,
       headers: {
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
       }
     })
 

@@ -13,7 +13,7 @@ const addWikiArticle = async (wikiArticleData: WikiArticle) => {
     console.log('Wiki article:', wikiArticleData)
     await Axios({
       method: 'post',
-      url: `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/wiki`,
       headers: {
         'Access-Control-Allow-Origin': '*'
       },
@@ -48,7 +48,7 @@ const updateWikiArticle = async (updatedWikiArticle: WikiArticle) => {
     content: updatedWikiArticle.content
   }
   await Axios.patch(
-    `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki`,
+    `${config.proxy.PROXY_URL}${config.apiGateway.URL}/wiki`,
     body
   )
 }
@@ -59,7 +59,7 @@ const deleteWikiArticle = async (wikiArticle: WikiArticle) => {
 
   await Axios({
     method: 'post',
-    url: `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki`,
+    url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/wiki`,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
@@ -75,7 +75,7 @@ const getWikiArticle = async (title: string) => {
     console.log(`Trying to get article "${sanatisedTitle}"`)
     const data = await Axios({
       method: 'get',
-      url: `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki/${sanatisedTitle}`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/wiki/${sanatisedTitle}`,
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
@@ -95,7 +95,7 @@ const getAllWikiArticles = async () => {
   try {
     const res = await Axios({
       method: 'get',
-      url: `${config.proxy.PROXY_URL}https://r972v6jm0j.execute-api.us-east-2.amazonaws.com/default/wiki`,
+      url: `${config.proxy.PROXY_URL}${config.apiGateway.URL}/wiki`,
       headers: {
         'Access-Control-Allow-Origin': '*'
       }
