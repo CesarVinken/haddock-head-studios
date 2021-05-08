@@ -14,6 +14,6 @@ export default {
     IDENTITY_POOL_ID: "YOUR_IDENTITY_POOL_ID"
   },
   proxy: {
-    PROXY_URL: "https://thingproxy.freeboard.io/fetch/"
+    PROXY_URL: "https://cors.bridged.cc/"
   }
 }
