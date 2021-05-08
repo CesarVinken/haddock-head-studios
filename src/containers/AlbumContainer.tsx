@@ -3,10 +3,8 @@ import { RouteComponentProps } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
 import { getAllAlbums } from '../lib/api/albumApi'
-import { secondsToStringTime } from '../lib/util/helpers'
 
 import DynamoDbAlbum from '../models/DynamoDbAlbum'
-import Track from '../models/Track'
 import AlbumStore from '../store/AlbumStore'
 import AlbumTrack from './AlbumTrack'
 
@@ -103,7 +101,8 @@ export default class AlbumContainer extends Component<AlbumProps, MyState> {
   _getTracksDisplay() {
     const tracksDisplay: JSX.Element[] = this.state.album.tracks.map(
       dbTrack => {
-        return <AlbumTrack track={dbTrack}></AlbumTrack>
+        return <AlbumTrack track={dbTrack} key={dbTrack.track_number}
+        ></AlbumTrack>
       }
     )
     return (
