@@ -6,3 +6,4 @@ config/dev.js
 build/
 public/
 assets/music
+package-lock.json
